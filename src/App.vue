@@ -4,11 +4,13 @@
       Table Component
     </h1>
     <Table :head="tableHead" :body="tableBody"/>
+    <Paging></Paging>
   </div>
 </template>
 
 <script>
 import Table from '@/components/Table.vue';
+import Paging from '@/components/Paging.vue';
 import { ref } from 'vue';
 export default {
   name: 'App',
@@ -29,7 +31,8 @@ export default {
     }
   },
   components:{
-    Table
+    Table,
+    Paging
   },
 }
 </script>
