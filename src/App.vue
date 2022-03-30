@@ -2,19 +2,16 @@
 	<div class="mw-1200">
 		<h1>Table Component</h1>
 		<Table :tlist="tableBody">
-			<template v-slot:header>
+			<template #header>
 				<th>Country</th>
 				<th>Name</th>
 				<th>Age</th>
 			</template>
 
-			<template v-slot:list>
-				<td>{{ slotProps.count }}</td>
-				<td>1</td>
-				<td>1</td>
-				<!-- <td>{{ row.item1 }}</td>
+			<template #list="{ row }">
 				<td>{{ row.item1 }}</td>
-				<td>{{ row.item1 }}</td> -->
+				<td>{{ row.item2 }}</td>
+				<td>{{ row.item3 }}</td>
 			</template>
 		</Table>
 	</div>
