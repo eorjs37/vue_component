@@ -1,13 +1,11 @@
 # vue_component
 
-## Table
+## 🧤 Table
 - props  
    |Name|type|required|
    |------|---|---|
    |head|Array|true|
-   |body|Array|true|
+   |body|Array|true|    
+       
 - method  
-   |Name|type|required|
-   |------|---|---|
-   |head|Array|true|
-   |body|Array|true|
+
