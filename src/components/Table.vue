@@ -1,61 +1,53 @@
 <template>
-  <table>
-    <thead>
-        <tr>
-            <th v-for="(item,index) in head" :key="'head'+index">
-                {{item}}
-            </th>
-        </tr>
-    </thead>
-   <tbody v-if="body.length > 0">
-       <tr v-for="(item, index) in body" :key="'body'+index">
-           <td>{{ item.item1 }}</td>
-           <td>{{ item.item2 }}</td>
-           <td>{{ item.item3 }}</td>
-       </tr>
-   </tbody>
-   <tbody v-else>
-       <tr>
-           <th colspan="99">데이터가 존재하지 않습니다.</th>
-       </tr>
-   </tbody>
- </table>
+	<table>
+		<thead>
+			<tr>
+				<slot name="header">
+					<th colspan="99">헤더에 데이터를 넣어주세요</th>
+				</slot>
+			</tr>
+		</thead>
+		<tbody>
+			<template v-for="item in tlist">
+				<tr>
+					<slot name="list" :row="item" :count="1"></slot>
+				</tr>
+			</template>
+			<tr v-if="tlist.length === 0">
+				<td colspan="99">검색결과가 없습니다.</td>
+			</tr>
+		</tbody>
+	</table>
 </template>
 <script>
 export default {
-    props:{
-        head:{
-            type: Array,
-            required: true,
-            default(){
-                return []
-            }
-        },
-        body:{
-            type: Array,
-            required: true,
-            default(){
-                return []
-            }
-        }
-    },
-}
+	props: {
+		tlist: {
+			type: Array,
+			default() {
+				return [];
+			},
+		},
+	},
+};
 </script>
 
-<style scoped>
+<style>
 table {
-  font-family: arial, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
+	font-family: arial, sans-serif;
+	border-collapse: collapse;
+	width: 100%;
+	margin-top: 10px;
 }
 
-td, th {
-  border: 1px solid #dddddd;
-  text-align: left;
-  padding: 8px;
+td,
+th {
+	border: 1px solid #dddddd;
+	text-align: left;
+	padding: 8px;
 }
 
 tr:nth-child(even) {
-  background-color: #dddddd;
+	background-color: #dddddd;
 }
 </style>
