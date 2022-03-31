@@ -17,7 +17,7 @@
     </Table>
     <!-- Paging Component -->
     <div class="page">
-      <Paging :totaldata="50" :pagingdata="10"></Paging>
+      <Paging :totaldata="50" :pagingdata="5" :pagingrange="5"></Paging>
     </div>
   </div>
 </template>
@@ -59,7 +59,7 @@ export default {
     ]);
     return {
       tableHead,
-      tableBody,
+      tableBody
     };
   },
   components: {

@@ -1,15 +1,15 @@
 <template>
   <div class="pagination">
-    <a>&laquo;</a>
-    <a v-for="(item) in totalpaging" :key="'paging'+item" :class="page_number === item ? 'active' :''" @click="page_number=item">
+    <a @click="prevPaging">&laquo;</a>
+    <a v-for="(item) in pageRange" :key="'paging'+item" :class="page_number === item ? 'active' :''" @click="page_number=item">
       {{ item }}
     </a>
-    <a>&raquo;</a>
+    <a @click="nextPaging">&raquo;</a>
   </div>
 </template>
 
-<script>import { onMounted, ref } from "vue";
-
+<script>
+import { onMounted, ref } from "vue";
 export default {
   name: "Paging",
   props:{
@@ -25,10 +25,33 @@ export default {
        required:true,
        default:5
     },
+    //보여주고 싶은 페이징 단위
+    pagingrange:{
+      type: Number,
+      required:true,
+      default:5
+    }
   },
   setup(props){
     const page_number = ref(1);
     const totalpaging = ref(6);
+    const pageRange = ref(Array.from(new Array(props.pagingrange), (_,i)=> i+1));
+
+    const prevPaging = () =>{
+      if(page_number.value === 1){
+        alert("첫번째 페이지 입니다.");
+        return false;
+      }
+      page_number.value--;
+    }
+
+    const nextPaging = () =>{
+      if(totalpaging.value <= page_number.value){
+        alert("마지막페이지 입니다.");
+        return false;
+      }
+      page_number.value++;
+    }
 
     onMounted(()=>{
       totalpaging.value = Math.ceil(props.totaldata / props.pagingdata);
@@ -36,7 +59,10 @@ export default {
 
     return{
       page_number,
-      totalpaging
+      totalpaging,
+      pageRange,
+      prevPaging,
+      nextPaging,
     }
   }
 };
@@ -44,7 +70,6 @@ export default {
 
 <style scoped>
 .pagination {
-  display: inline-block;
   position: absolute;
   left: 50%;
   transform: translateX(-50%);

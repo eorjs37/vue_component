@@ -10,7 +10,7 @@
     <tbody>
       <template v-for="(item, index) in tlist" :key="'item' + index">
         <tr>
-          <slot name="list" :row="item" :count="1"></slot>
+          <slot name="list" :row="item"></slot>
         </tr>
       </template>
       <tr v-if="tlist.length === 0">
