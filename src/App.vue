@@ -17,7 +17,7 @@
 		</Table>
 		<!-- Paging Component -->
 		<div class="page">
-			<Paging :totaldata="50" :pagingdata="5" :pagingrange="5"></Paging>
+			<Paging :totaldata="50" :pagingdata="5" :pagingrange="5" @onPagingnext="pagingNext"></Paging>
 		</div>
 	</div>
 </template>
@@ -57,9 +57,16 @@ export default {
 				item3: 'Canada',
 			},
 		]);
+
+		const pagingNext = pageNumger => {
+			//axios를 태우시오
+			console.log('currentPage : ', pageNumger.value);
+		};
+
 		return {
 			tableHead,
 			tableBody,
+			pagingNext,
 		};
 	},
 	components: {
