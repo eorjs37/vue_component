@@ -2,9 +2,9 @@
 
 ## 🧤 Table
 - ## props  
-   |Name|type|required|
-   |------|---|---|
-   |tlist|Array|false| 
+   |Name|type|required|default|description|
+   |-----|-----|-----|-----|-----|
+   |tlist|Array|false|없음|table에 들어가는 데이터| 
        
 - ## slot  
   > slot은 컴퍼넌트간에 공통적은 부분을 추출하는 것이며 slot에 이름을 정할 수 있다.
@@ -111,3 +111,42 @@
 
 
 
+
+
+## 🚓 Paging
+- ## props  
+   |Name|type|required|default|description|
+   |---------|------|----|-|------|
+   |totaldata|Number|true|1|전체데이터|
+   |pagingdata|Number|true|5|보여주고 싶은 데이터 개수|
+   |pagingrange|Number|true|5|보여주고 싶은 페이징 단위| 
+
+- ## data     
+   |Name|description|
+   |-----------|------|
+   |page_number|현재 페이지 번호|
+   |totalpaging|전체 페이지 개수( Math.ceil(totaldata/pagingdata) )|
+   |page_range|보여주고 싶은 페이지 범위|
+
+- ## methods  
+   |Name|description|
+   |-----------|------|
+   |prevPaging|페이지 범위를 보여주고 싶은 페이징만큼 앞으로 이동|
+   |nextPaging|페이지 범위를 보여주고 싶은 페이징만큼 뒤로 이동|
+
+
+- ## 사용예시
+App.vue
+```html script
+<template>
+   <Paging :totaldata="50" :pagingdata="5" :pagingrange="5"></Paging>
+</template>   
+<script>
+   
+import Paging from '@/components/Paging.vue';
+
+components: {
+	Paging,
+},
+</script>
+```
