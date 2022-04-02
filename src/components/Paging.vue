@@ -1,7 +1,15 @@
 <template>
 	<div class="pagination">
 		<a @click="prevPaging">&laquo;</a>
-		<a v-for="item in page_range" :key="'paging' + item" :class="page_number === item ? 'active' : ''" @click="page_number = item">
+		<a
+			v-for="item in page_range"
+			:key="'paging' + item"
+			:class="page_number === item ? 'active' : ''"
+			@click="
+				page_number = item;
+				movePaging();
+			"
+		>
 			{{ item }}
 		</a>
 		<a @click="nextPaging">&raquo;</a>
@@ -32,7 +40,8 @@ export default {
 			default: 5,
 		},
 	},
-	setup(props) {
+	emits: ['onPagingnext'],
+	setup(props, context) {
 		const page_number = ref(1);
 		const totalpaging = ref(5);
 		const page_range = ref(Array.from(new Array(props.pagingrange), (_, i) => i + 1));
@@ -45,6 +54,7 @@ export default {
 			page_number.value--;
 			const new_range = return_new_range();
 			page_range.value = new_range;
+			movePaging();
 		};
 
 		const nextPaging = () => {
@@ -55,6 +65,11 @@ export default {
 			page_number.value++;
 			const new_range = return_new_range();
 			page_range.value = new_range;
+			movePaging();
+		};
+
+		const movePaging = () => {
+			context.emit('onPagingnext', page_number);
 		};
 
 		const return_new_range = () => {
@@ -72,6 +87,7 @@ export default {
 			page_range,
 			prevPaging,
 			nextPaging,
+			movePaging,
 		};
 	},
 };
