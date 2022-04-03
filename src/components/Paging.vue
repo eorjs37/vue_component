@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import { onMounted, ref } from 'vue';
+import { ref, onBeforeUpdate } from 'vue';
 export default {
 	name: 'Paging',
 	props: {
@@ -44,7 +44,7 @@ export default {
 	setup(props, context) {
 		const page_number = ref(1);
 		const totalpaging = ref(5);
-		const page_range = ref(Array.from(new Array(props.pagingrange), (_, i) => i + 1));
+		const page_range = ref([]);
 		const total_data = ref(props.totaldata);
 		const paging_data = ref(props.pagingdata);
 
@@ -79,8 +79,8 @@ export default {
 			return new_range.filter(item => item <= totalpaging.value);
 		};
 
-		onMounted(() => {
-			totalpaging.value = Math.ceil(total_data.value / paging_data.value);
+		onBeforeUpdate(() => {
+			totalpaging.value = Math.ceil(props.totaldata / props.pagingdata);
 			page_range.value = return_new_range();
 		});
 
