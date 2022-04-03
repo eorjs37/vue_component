@@ -72,11 +72,6 @@ export default {
 			context.emit('onPaging', page_number);
 		};
 
-		const return_new_range = () => {
-			const new_range = Array.from(new Array(props.pagingrange), (_, i) => page_number.value + i);
-			return new_range.filter(item => item <= totalpaging.value);
-		};
-
 		onMounted(() => {
 			totalpaging.value = Math.ceil(props.totaldata / props.pagingdata);
 			page_range.value = return_new_range();
@@ -84,7 +79,15 @@ export default {
 
 		onUpdated(() => {
 			totalpaging.value = Math.ceil(props.totaldata / props.pagingdata);
+			if (page_range.value.length === 0) {
+				page_range.value = return_new_range();
+			}
 		});
+
+		const return_new_range = () => {
+			const new_range = Array.from(new Array(props.pagingrange), (_, i) => page_number.value + i);
+			return new_range.filter(item => item <= totalpaging.value);
+		};
 
 		return {
 			page_number,
