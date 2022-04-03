@@ -79,6 +79,11 @@ export default {
 
 		onUpdated(() => {
 			totalpaging.value = Math.ceil(props.totaldata / props.pagingdata);
+			if (totalpaging.value === 0) {
+				page_range.value = [1];
+				return false;
+			}
+
 			if (page_range.value.length === 0) {
 				page_range.value = return_new_range();
 			}

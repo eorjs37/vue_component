@@ -20,11 +20,13 @@
 			<Paging :totaldata="totalCount" :pagingdata="5" :pagingrange="5" @onPaging="pagingNext"></Paging>
 		</div>
 	</div>
+	<Alert />
 </template>
 
 <script>
 import Table from '@/components/Table.vue';
 import Paging from '@/components/Paging.vue';
+import Alert from '@/components/Alert.vue';
 import { ref, onMounted } from 'vue';
 import mock from './assets/mock/table';
 export default {
@@ -56,6 +58,7 @@ export default {
 	components: {
 		Table,
 		Paging,
+		Alert,
 	},
 };
 </script>
