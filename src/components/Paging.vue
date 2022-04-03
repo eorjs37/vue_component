@@ -45,6 +45,8 @@ export default {
 		const page_number = ref(1);
 		const totalpaging = ref(5);
 		const page_range = ref(Array.from(new Array(props.pagingrange), (_, i) => i + 1));
+		const total_data = ref(props.totaldata);
+		const paging_data = ref(props.pagingdata);
 
 		const prevPaging = () => {
 			if (page_number.value === 1) {
@@ -78,7 +80,7 @@ export default {
 		};
 
 		onMounted(() => {
-			totalpaging.value = Math.ceil(props.totaldata / props.pagingdata);
+			totalpaging.value = Math.ceil(total_data.value / paging_data.value);
 			page_range.value = return_new_range();
 		});
 
@@ -86,6 +88,8 @@ export default {
 			page_number,
 			totalpaging,
 			page_range,
+			total_data,
+			paging_data,
 			prevPaging,
 			nextPaging,
 			movePaging,

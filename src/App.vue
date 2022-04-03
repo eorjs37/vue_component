@@ -32,7 +32,7 @@ export default {
 	setup() {
 		const tableHead = ref(['company', 'Contact', 'Country']);
 		const tableBody = ref([]);
-		const totalCount = ref(6);
+		const totalCount = ref(0);
 
 		const pagingNext = pageNumger => {
 			//axios를 태우시오
