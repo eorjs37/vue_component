@@ -1,4 +1,6 @@
 import { createApp } from 'vue'
 import App from './App.vue'
-
-createApp(App).mount('#app')
+import Alert from '@/components/Alert.vue';
+const app = createApp(App);
+app.component('Alert',Alert);
+app.mount('#app');

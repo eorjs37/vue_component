@@ -156,3 +156,51 @@ export default {
 }   
 </script>
 ```
+
+## 🚇 Alert
+
+- ## props  
+   |Name|type|required|default|description|
+   |---------|------|----|-|------|
+   |alertkind|true|String|info|alert종류는 danger, success, info, warning이 존재하면 색을 표시하기 위한 것이다|
+
+- ## 사용예시
+   main.js에서 전역으로 사용할 수 있도록 컴퍼넌트 추가
+   ```javascript
+   import { createApp } from 'vue';
+   import App from './App.vue'
+   import Alert from '@/components/Alert.vue';
+   const app = createApp(App);
+   app.component('Alert',Alert);
+   app.mount('#app');
+   ```
+
+   App.vue
+   ```html javascript
+   <template>
+      /* 4. 배열로 표현하도록 변경 */
+      <component v-for="(item,index) in alert" :is="item.name" :key="'alert'+index" :alertkind="item.alertkind"></component>
+   </template>
+
+   <script>
+   export default {
+      name: 'App',
+      setup() {
+         const alert = ref([]); //1.여러개를 보여줄수 있도록 배열로 선언
+
+         //2.배열에 name:'Alert', alertkind:'종류'
+         const addComponent = () =>{
+            alert.value.push({
+               'name':'Alert',
+               'alertkind':'danger'
+            })
+         }
+
+         //3.컴퍼넌트 제거
+         const removeComponent = () =>{
+            if(alert.value.length > 0) alert.value.splice(alert.value.length-1,1);
+         }
+      }
+   }
+   </script>   
+   ```

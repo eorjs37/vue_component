@@ -1,6 +1,6 @@
 <template>
 	<div class="mw-1200">
-		<div class="alert warning">
+		<div :class="'alert '+alertkind">
 			<strong>Danger!</strong>
 			<div class="close_btn">&times;</div>
 		</div>
@@ -8,7 +8,18 @@
 </template>
 
 <script>
-export default {};
+export default {
+	props:{
+		//alert 종류
+		alertkind: {
+			type: String,
+			required: true,
+			default: 'info',
+		},
+	},
+	setup(){
+	}
+};
 </script>
 
 <style scoped>
