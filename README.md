@@ -131,22 +131,28 @@
 - ## methods  
    |Name|description|
    |-----------|------|
-   |prevPaging|페이지 범위를 보여주고 싶은 페이징만큼 앞으로 이동|
-   |nextPaging|페이지 범위를 보여주고 싶은 페이징만큼 뒤로 이동|
+   |onPaging|페이징을 할때마다 동작 하는 함수|
 
 
 - ## 사용예시
 App.vue
 ```html script
 <template>
-   <Paging :totaldata="50" :pagingdata="5" :pagingrange="5"></Paging>
+   <Paging :totaldata="totalCount" :pagingdata="5" :pagingrange="5" @onPaging="pagingNext"></Paging>
 </template>   
 <script>
-   
 import Paging from '@/components/Paging.vue';
+export default {
+   setup() {
+      const totalCount = ref(6);
 
-components: {
-	Paging,
-},
+      const pagingNext = pageNumger => {
+         //데이터 통신을 작업하는곳
+      }
+   },
+   components: {
+      Paging,
+   },
+}   
 </script>
 ```

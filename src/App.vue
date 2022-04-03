@@ -4,9 +4,9 @@
 		<!-- Table Component -->
 		<Table :tlist="tableBody">
 			<template #header>
-				<th>Country</th>
+				<th>Company</th>
 				<th>Name</th>
-				<th>Age</th>
+				<th>Contury</th>
 			</template>
 
 			<template #list="{ row }">
@@ -17,7 +17,7 @@
 		</Table>
 		<!-- Paging Component -->
 		<div class="page">
-			<Paging :totaldata="50" :pagingdata="5" :pagingrange="5" @onPagingnext="pagingNext"></Paging>
+			<Paging :totaldata="totalCount" :pagingdata="5" :pagingrange="5" @onPaging="pagingNext"></Paging>
 		</div>
 	</div>
 </template>
@@ -25,48 +25,32 @@
 <script>
 import Table from '@/components/Table.vue';
 import Paging from '@/components/Paging.vue';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import mock from './assets/mock/table';
 export default {
 	name: 'App',
 	setup() {
 		const tableHead = ref(['company', 'Contact', 'Country']);
-		const tableBody = ref([
-			{
-				item1: 'Alfreds Futterkiste',
-				item2: 'Maria Anders',
-				item3: 'Germany',
-			},
-			{
-				item1: 'Centro comercial Moctezuma',
-				item2: 'Francisco Chang',
-				item3: 'Mexico',
-			},
-			{
-				item1: 'Ernst Handel',
-				item2: 'Roland Mendel',
-				item3: 'Austria',
-			},
-			{
-				item1: 'Island Trading',
-				item2: 'Helen Bennett',
-				item3: 'UK',
-			},
-			{
-				item1: 'Laughing Bacchus Winecellars',
-				item2: 'Yoshi Tannamuri',
-				item3: 'Canada',
-			},
-		]);
+		const tableBody = ref([]);
+		const totalCount = ref(6);
 
 		const pagingNext = pageNumger => {
 			//axios를 태우시오
-			console.log('currentPage : ', pageNumger.value);
+			const page = pageNumger.value ? pageNumger.value : pageNumger;
+			const { data, totalData } = mock;
+			totalCount.value = totalData;
+			tableBody.value = data[page - 1];
 		};
+
+		onMounted(() => {
+			pagingNext(1);
+		});
 
 		return {
 			tableHead,
 			tableBody,
 			pagingNext,
+			totalCount,
 		};
 	},
 	components: {

@@ -40,7 +40,7 @@ export default {
 			default: 5,
 		},
 	},
-	emits: ['onPagingnext'],
+	emits: ['onPaging'],
 	setup(props, context) {
 		const page_number = ref(1);
 		const totalpaging = ref(5);
@@ -69,7 +69,7 @@ export default {
 		};
 
 		const movePaging = () => {
-			context.emit('onPagingnext', page_number);
+			context.emit('onPaging', page_number);
 		};
 
 		const return_new_range = () => {
@@ -79,6 +79,7 @@ export default {
 
 		onMounted(() => {
 			totalpaging.value = Math.ceil(props.totaldata / props.pagingdata);
+			page_range.value = return_new_range();
 		});
 
 		return {
