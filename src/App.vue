@@ -19,11 +19,9 @@
 		<div class="page">
 			<Paging :totaldata="totalCount" :pagingdata="5" :pagingrange="5" @onPaging="pagingNext"></Paging>
 		</div>
-		<button @click="addComponent">버튼</button>
-		<button @click="removeComponent">제거</button>
-		<!-- 컴퍼넌트 동적 추가 -->
-		<component v-for="(item,index) in alert" :is="item.name" :key="'alert'+index" :alertkind="item.alertkind"></component>
 	</div>
+
+	<notifications position="bottom right" />
 </template>
 
 <script>
@@ -31,13 +29,13 @@ import Table from '@/components/Table.vue';
 import Paging from '@/components/Paging.vue';
 import { ref, onMounted } from 'vue';
 import mock from './assets/mock/table';
+import { notify } from '@kyvg/vue3-notification';
 export default {
 	name: 'App',
 	setup() {
 		const tableHead = ref(['company', 'Contact', 'Country']);
 		const tableBody = ref([]);
 		const totalCount = ref(0);
-		const alert = ref([]);
 
 		const pagingNext = pageNumger => {
 			//axios를 태우시오
@@ -46,20 +44,12 @@ export default {
 			totalCount.value = totalData;
 			tableBody.value = data[page - 1];
 		};
-
-		const addComponent = () =>{
-			alert.value.push({
-				'name':'Alert',
-				'alertkind':'danger'
-			})
-		}
-
-		const removeComponent = () =>{
-			if(alert.value.length > 0) alert.value.splice(alert.value.length-1,1);
-		}
-
 		onMounted(() => {
 			pagingNext(1);
+			notify({
+				title: 'Authorization',
+				text: 'You have been logged in!',
+			});
 		});
 
 		return {
@@ -67,9 +57,6 @@ export default {
 			tableBody,
 			pagingNext,
 			totalCount,
-			alert,
-			addComponent,
-			removeComponent
 		};
 	},
 	components: {

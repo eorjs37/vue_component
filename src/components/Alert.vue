@@ -1,6 +1,6 @@
 <template>
 	<div class="mw-1200">
-		<div :class="'alert '+alertkind">
+		<div :class="'alert ' + alertkind">
 			<strong>Danger!</strong>
 			<div class="close_btn">&times;</div>
 		</div>
@@ -9,7 +9,7 @@
 
 <script>
 export default {
-	props:{
+	props: {
 		//alert 종류
 		alertkind: {
 			type: String,
@@ -17,14 +17,13 @@ export default {
 			default: 'info',
 		},
 	},
-	setup(){
-	}
+	setup() {},
 };
 </script>
 
 <style scoped>
 .mw-1200 {
-	position: fixed;
+	position: absolute;
 	bottom: 50px;
 	width: 40%;
 	left: 50%;
