@@ -1,6 +1,6 @@
 <template>
 	<div class="mw-1200">
-		<h1>Table Component</h1>
+		<h1 class="title">Table Component</h1>
 		<!-- Table Component -->
 		<Table :tlist="tableBody">
 			<template #header>
@@ -67,25 +67,9 @@ export default {
 };
 </script>
 
-<style>
-body {
-	margin: 0;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-	margin: 0;
-}
-
-.mw-1200 {
-	max-width: 1200px;
-	width: 100%;
-	margin: 0 auto;
-}
+<style lang="scss">
+@import "@/assets/style/reset.scss";
+@import "@/assets/style/common.scss";
 
 .page {
 	position: relative;
