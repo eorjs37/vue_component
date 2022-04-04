@@ -161,4 +161,4 @@ export default {
 
 
 # 🛹vue-notification
- * [vue-notification](https://github.com/eorjs37/vue_component/src/descritpion/noti) 
+ * [vue-notification](https://github.com/eorjs37/vue_component/tree/master/src/description/noti) 
