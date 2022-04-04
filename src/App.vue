@@ -21,7 +21,7 @@
 		</div>
 	</div>
 
-	<notifications position="bottom right" />
+	<notifications position="bottom center" />
 </template>
 
 <script>
@@ -47,8 +47,9 @@ export default {
 		onMounted(() => {
 			pagingNext(1);
 			notify({
-				title: 'Authorization',
-				text: 'You have been logged in!',
+				type:'error',
+				title: '오류',
+				text: '정확한 정보를 입력해주세요.',
 			});
 		});
 

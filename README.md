@@ -135,6 +135,7 @@
 
 
 - ## 사용예시
+
 App.vue
 ```html script
 <template>
@@ -156,3 +157,8 @@ export default {
 }   
 </script>
 ```
+
+
+
+# 🛹vue-notification
+ * [vue-notification](https://github.com/eorjs37/vue_component/src/descritpion/noti) 

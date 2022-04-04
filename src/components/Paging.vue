@@ -18,6 +18,7 @@
 
 <script>
 import { ref, onMounted, onUpdated } from 'vue';
+import { notify } from '@kyvg/vue3-notification';
 export default {
 	name: 'Paging',
 	props: {
@@ -48,7 +49,11 @@ export default {
 
 		const prevPaging = () => {
 			if (page_number.value === 1) {
-				alert('첫번째 페이지 입니다.');
+				notify({
+					type:'warn',
+					title: '경고',
+					text: '첫번째 페이지 입니다.',
+				});
 				return false;
 			}
 			page_number.value--;
@@ -59,7 +64,11 @@ export default {
 
 		const nextPaging = () => {
 			if (totalpaging.value <= page_number.value) {
-				alert('마지막페이지 입니다.');
+				notify({
+					type:'warn',
+					title: '경고',
+					text: '마지막페이지 입니다.',
+				});
 				return false;
 			}
 			page_number.value++;
