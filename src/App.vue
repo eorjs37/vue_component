@@ -16,8 +16,12 @@
 			</template>
 		</Table>
 		<!-- Paging Component -->
-		<div class="page">
-			<Paging :totaldata="totalCount" :pagingdata="5" :pagingrange="5" @onPaging="pagingNext"></Paging>
+		<Paging :totaldata="totalCount" :pagingdata="5" :pagingrange="5" @onPaging="pagingNext"></Paging>
+
+		<!-- Image Component -->
+		<h1 class="title">Image Component</h1>
+		<div class="component">
+			<Image></Image>
 		</div>
 	</div>
 
@@ -27,9 +31,9 @@
 <script>
 import Table from '@/components/Table.vue';
 import Paging from '@/components/Paging.vue';
+import Image from '@/components/Image.vue';
 import { ref, onMounted } from 'vue';
 import mock from './assets/mock/table';
-import { notify } from '@kyvg/vue3-notification';
 export default {
 	name: 'App',
 	setup() {
@@ -46,11 +50,6 @@ export default {
 		};
 		onMounted(() => {
 			pagingNext(1);
-			notify({
-				type:'error',
-				title: '오류',
-				text: '정확한 정보를 입력해주세요.',
-			});
 		});
 
 		return {
@@ -63,16 +62,12 @@ export default {
 	components: {
 		Table,
 		Paging,
+		Image,
 	},
 };
 </script>
 
 <style lang="scss">
-@import "@/assets/style/reset.scss";
-@import "@/assets/style/common.scss";
-
-.page {
-	position: relative;
-	margin-top: 10px;
-}
+@import '@/assets/style/reset.scss';
+@import '@/assets/style/common.scss';
 </style>

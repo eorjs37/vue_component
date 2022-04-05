@@ -1,18 +1,20 @@
 <template>
-	<div class="pagination">
-		<a @click="prevPaging">&laquo;</a>
-		<a
-			v-for="item in page_range"
-			:key="'paging' + item"
-			:class="page_number === item ? 'active' : ''"
-			@click="
-				page_number = item;
-				movePaging();
-			"
-		>
-			{{ item }}
-		</a>
-		<a @click="nextPaging">&raquo;</a>
+	<div class="page">
+		<div class="pagination">
+			<a @click="prevPaging">&laquo;</a>
+			<a
+				v-for="item in page_range"
+				:key="'paging' + item"
+				:class="page_number === item ? 'active' : ''"
+				@click="
+					page_number = item;
+					movePaging();
+				"
+			>
+				{{ item }}
+			</a>
+			<a @click="nextPaging">&raquo;</a>
+		</div>
 	</div>
 </template>
 
@@ -50,7 +52,7 @@ export default {
 		const prevPaging = () => {
 			if (page_number.value === 1) {
 				notify({
-					type:'warn',
+					type: 'warn',
 					title: '경고',
 					text: '첫번째 페이지 입니다.',
 				});
@@ -65,7 +67,7 @@ export default {
 		const nextPaging = () => {
 			if (totalpaging.value <= page_number.value) {
 				notify({
-					type:'warn',
+					type: 'warn',
 					title: '경고',
 					text: '마지막페이지 입니다.',
 				});
@@ -116,6 +118,11 @@ export default {
 </script>
 
 <style scoped>
+.page {
+	position: relative;
+	margin-top: 25px;
+	height: 32px;
+}
 .pagination {
 	position: absolute;
 	left: 50%;

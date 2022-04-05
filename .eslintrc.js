@@ -8,6 +8,7 @@ module.exports = {
 		'vue/require-v-for-key': 'off',
 		'vue/no-multiple-template-root': 'off',
 		'vue/no-v-for-template-key': 'off',
+		'no-undef': 'off',
 		'prettier/prettier': [
 			'error',
 			{
