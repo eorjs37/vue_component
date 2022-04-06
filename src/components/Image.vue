@@ -73,12 +73,12 @@ export default {
 <style scoped lang="scss">
 .image_component {
 	display: inline-block;
-	width: 240px;
+	width: 512px;
 }
 
 .image {
 	width: inherit;
-	height: 150px;
+	height: 512px;
 	background-color: #f8f8f8;
 	border: 1px solid #dcdcdc;
 	box-sizing: border-box;
