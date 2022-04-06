@@ -5,12 +5,13 @@
 		</div>
 		<div class="buttons">
 			<div class="group">
-				<button class="button register">등록</button>
+				<button class="button register" @click="imageUpload">등록</button>
 			</div>
 			<div class="group">
-				<button class="button delete">삭제</button>
+				<button class="button delete" @click="deleteImage">삭제</button>
 			</div>
 		</div>
+		<input type="file" id="image_file" class="image_file" />
 	</div>
 </template>
 
@@ -21,8 +22,31 @@ export default {
 	setup() {
 		const imageUrl = ref(require('@/assets/images/no-pictures.png'));
 
+		const imageUpload = () => {
+			const inputFile = document.getElementById('image_file');
+			inputFile.click();
+
+			inputFile.addEventListener('change', fileChangeEvent);
+		};
+
+		const deleteImage = () => {
+			imageUrl.value = require('@/assets/images/no-pictures.png');
+		};
+
+		const fileChangeEvent = () => {
+			const inputFile = document.getElementById('image_file');
+			if (inputFile.files[0]) {
+				let reader = new FileReader();
+				reader.onload = e => {
+					imageUrl.value = e.target.result;
+				};
+				reader.readAsDataURL(inputFile.files[0]);
+			}
+		};
 		return {
 			imageUrl,
+			imageUpload,
+			deleteImage,
 		};
 	},
 };
@@ -69,10 +93,14 @@ export default {
 }
 
 .register {
-	background-color: #008cba;
+	background-color: #405cf5;
 }
 
 .delete {
 	background-color: #f44336;
+}
+
+.image_file {
+	display: none;
 }
 </style>
