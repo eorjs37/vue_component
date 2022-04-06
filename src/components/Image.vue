@@ -17,6 +17,8 @@
 
 <script>
 import { ref } from 'vue';
+import { extract } from '@/utils/utils';
+import { notify } from '@kyvg/vue3-notification';
 export default {
 	name: 'Image',
 	setup() {
@@ -35,12 +37,19 @@ export default {
 
 		const fileChangeEvent = () => {
 			const inputFile = document.getElementById('image_file');
-			if (inputFile.files[0]) {
+
+			if (inputFile.files[0] && extract('IMAGE', inputFile.files[0])) {
 				let reader = new FileReader();
 				reader.onload = e => {
 					imageUrl.value = e.target.result;
 				};
 				reader.readAsDataURL(inputFile.files[0]);
+			} else {
+				notify({
+					type: 'error',
+					title: '오류',
+					text: '이미지 파일이 아닙니다.',
+				});
 			}
 		};
 		return {
