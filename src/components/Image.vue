@@ -1,7 +1,7 @@
 <template>
 	<div class="image_component">
 		<div class="image">
-			<img class="image_fill" :src="imageUrl" />
+			<img class="image_fill" :src="image_url" />
 		</div>
 		<div class="buttons">
 			<div class="group">
@@ -21,8 +21,16 @@ import { extract } from '@/utils/utils';
 import { notify } from '@kyvg/vue3-notification';
 export default {
 	name: 'Image',
-	setup() {
-		const imageUrl = ref(require('@/assets/images/no-pictures.png'));
+	emits: ['onReturnFile'],
+	props: {
+		imageurl: {
+			type: String,
+			required: true,
+			default: require('@/assets/images/no-pictures.png'),
+		},
+	},
+	setup(props, context) {
+		const image_url = ref(props.imageurl);
 
 		const imageUpload = () => {
 			const inputFile = document.getElementById('image_file');
@@ -32,7 +40,7 @@ export default {
 		};
 
 		const deleteImage = () => {
-			imageUrl.value = require('@/assets/images/no-pictures.png');
+			image_url.value = require('@/assets/images/no-pictures.png');
 		};
 
 		const fileChangeEvent = () => {
@@ -40,8 +48,9 @@ export default {
 
 			if (inputFile.files[0] && extract('IMAGE', inputFile.files[0])) {
 				let reader = new FileReader();
+				context.emit('onReturnFile', inputFile.files[0]);
 				reader.onload = e => {
-					imageUrl.value = e.target.result;
+					image_url.value = e.target.result;
 				};
 				reader.readAsDataURL(inputFile.files[0]);
 			} else {
@@ -53,7 +62,7 @@ export default {
 			}
 		};
 		return {
-			imageUrl,
+			image_url,
 			imageUpload,
 			deleteImage,
 		};
@@ -78,7 +87,7 @@ export default {
 .image_fill {
 	width: inherit;
 	height: inherit;
-	object-fit: contain;
+	object-fit: cover;
 }
 
 .buttons {
