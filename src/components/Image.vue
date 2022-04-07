@@ -43,7 +43,7 @@ export default {
 			image_url.value = require('@/assets/images/no-pictures.png');
 		};
 
-		const fileChangeEvent = () => {
+		const fileChangeEvent = event => {
 			const inputFile = document.getElementById('image_file');
 
 			if (inputFile.files[0] && extract('IMAGE', inputFile.files[0])) {
@@ -60,6 +60,7 @@ export default {
 					text: '이미지 파일이 아닙니다.',
 				});
 			}
+			event.target.value = '';
 		};
 		return {
 			image_url,
