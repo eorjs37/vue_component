@@ -21,7 +21,10 @@
 		<!-- Image Component -->
 		<h1 class="title">Image Component</h1>
 		<div class="component">
-			<Image></Image>
+			<Image
+				:imageurl="'https://imgnews.pstatic.net/image/425/2022/04/07/20220407032632026624fed20d3049816221754_20220407032901728.jpg?type=w647'"
+				@onReturnFile="returnFile"
+			></Image>
 		</div>
 	</div>
 
@@ -40,6 +43,7 @@ export default {
 		const tableHead = ref(['company', 'Contact', 'Country']);
 		const tableBody = ref([]);
 		const totalCount = ref(0);
+		const fileData = ref(null);
 
 		const pagingNext = pageNumger => {
 			//axios를 태우시오
@@ -48,6 +52,10 @@ export default {
 			totalCount.value = totalData;
 			tableBody.value = data[page - 1];
 		};
+
+		const returnFile = file => {
+			fileData.value = file;
+		};
 		onMounted(() => {
 			pagingNext(1);
 		});
@@ -55,8 +63,9 @@ export default {
 		return {
 			tableHead,
 			tableBody,
-			pagingNext,
 			totalCount,
+			pagingNext,
+			returnFile,
 		};
 	},
 	components: {

@@ -1,9 +1,8 @@
-const imageType = ['jpg', 'png', 'gif', 'svg'];
-
-const extension = (fileType, file) => {
+const imageType = ['jpg', 'png', 'jpeg'];
+const extract = (fileType, file) => {
 	if (fileType === 'IMAGE') {
-		const type = file['type'].split('/');
-		if (imageType.includes(type[1])) {
+		const filetype = file.type.split('/');
+		if (imageType.includes(filetype[1])) {
 			return true;
 		}
 	}
@@ -11,4 +10,4 @@ const extension = (fileType, file) => {
 	return false;
 };
 
-export { extension };
+export { extract };
