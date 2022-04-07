@@ -26,6 +26,22 @@
 				@onReturnFile="returnFile"
 			></Image>
 		</div>
+
+		<!-- Button Component -->
+		<h1 class="title mt-30">Button Component</h1>
+		<div class="component">
+			<Button :btntype="'green'">
+				<template #buttonName> 등록 </template>
+			</Button>
+
+			<Button :btntype="'red'" class="ml-15">
+				<template #buttonName> 삭제 </template>
+			</Button>
+
+			<Button :btntype="'blue'" class="ml-15">
+				<template #buttonName> 목록 </template>
+			</Button>
+		</div>
 	</div>
 
 	<notifications position="bottom center" />
@@ -35,6 +51,7 @@
 import Table from '@/components/Table.vue';
 import Paging from '@/components/Paging.vue';
 import Image from '@/components/Image.vue';
+import Button from '@/components/Button.vue';
 import { ref, onMounted } from 'vue';
 import mock from './assets/mock/table';
 export default {
@@ -72,6 +89,7 @@ export default {
 		Table,
 		Paging,
 		Image,
+		Button,
 	},
 };
 </script>
