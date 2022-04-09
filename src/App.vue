@@ -52,7 +52,7 @@ import Table from '@/components/Table.vue';
 import Paging from '@/components/Paging.vue';
 import Image from '@/components/Image.vue';
 import Button from '@/components/Button.vue';
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, inject } from 'vue';
 import mock from './assets/mock/table';
 export default {
 	name: 'App',
@@ -61,7 +61,6 @@ export default {
 		const tableBody = ref([]);
 		const totalCount = ref(0);
 		const fileData = ref(null);
-
 		const pagingNext = pageNumger => {
 			//axios를 태우시오
 			const page = pageNumger.value ? pageNumger.value : pageNumger;
