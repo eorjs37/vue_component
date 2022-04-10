@@ -9,7 +9,11 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 library.add(faUserSecret, faSpinner);
 
+//router
+import { router } from './router/router';
+
 const app = createApp(App);
+app.use(router);
 app.component('font-awesome-icon', FontAwesomeIcon);
 app.use(Notifications);
 app.mount('#app');
