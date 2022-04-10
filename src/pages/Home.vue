@@ -43,7 +43,7 @@
 			</Button>
 		</div>
 	</div>
-
+	<Footer></Footer>
 	<notifications position="bottom center" />
 </template>
 
@@ -54,6 +54,7 @@ import Image from '@/components/Image.vue';
 import Button from '@/components/Button.vue';
 import { ref, onMounted, inject } from 'vue';
 import mock from '../assets/mock/table';
+import Footer from '@/pages/Footer.vue';
 export default {
 	name: 'App',
 	setup() {
@@ -89,6 +90,7 @@ export default {
 		Paging,
 		Image,
 		Button,
+		Footer,
 	},
 };
 </script>
