@@ -30,15 +30,15 @@
 		<!-- Button Component -->
 		<h1 class="title mt-30">Button Component</h1>
 		<div class="component">
-			<Button :btntype="'green'">
+			<Button :btntype="'green'" :isloading="btnIsLoading1" @onLoading="changeLoading1()">
 				<template #buttonName> 등록 </template>
 			</Button>
 
-			<Button :btntype="'red'" class="ml-15">
+			<Button class="ml-15" :btntype="'red'" :isloading="btnIsLoading2" @onLoading="changeLoading2()">
 				<template #buttonName> 삭제 </template>
 			</Button>
 
-			<Button :btntype="'blue'" class="ml-15">
+			<Button class="ml-15" :btntype="'blue'" :isloading="btnIsLoading3" @onLoading="changeLoading3()">
 				<template #buttonName> 목록 </template>
 			</Button>
 		</div>
@@ -55,6 +55,7 @@ import Button from '@/components/Button.vue';
 import { ref, onMounted, inject } from 'vue';
 import mock from '../assets/mock/table';
 import Footer from '@/pages/Footer.vue';
+import { notify } from '@kyvg/vue3-notification';
 export default {
 	name: 'App',
 	setup() {
@@ -62,6 +63,9 @@ export default {
 		const tableBody = ref([]);
 		const totalCount = ref(0);
 		const fileData = ref(null);
+		const btnIsLoading1 = ref(false);
+		const btnIsLoading2 = ref(false);
+		const btnIsLoading3 = ref(false);
 		const pagingNext = pageNumger => {
 			//axios를 태우시오
 			const page = pageNumger.value ? pageNumger.value : pageNumger;
@@ -73,6 +77,33 @@ export default {
 		const returnFile = file => {
 			fileData.value = file;
 		};
+
+		const changeLoading1 = () => {
+			if (!btnIsLoading1.value) {
+				btnIsLoading1.value = !btnIsLoading1.value;
+				new Promise((resolve, reject) => {
+					setTimeout(function () {
+						btnIsLoading1.value = !btnIsLoading1.value;
+						resolve('success');
+					}, 3000);
+				});
+			} else {
+				notify({
+					type: 'warn',
+					title: '등록',
+					text: '등록중입니다.',
+				});
+			}
+		};
+
+		const changeLoading2 = () => {
+			btnIsLoading2.value = !btnIsLoading2.value;
+		};
+
+		const changeLoading3 = () => {
+			btnIsLoading3.value = !btnIsLoading3.value;
+		};
+
 		onMounted(() => {
 			pagingNext(1);
 		});
@@ -81,8 +112,14 @@ export default {
 			tableHead,
 			tableBody,
 			totalCount,
+			btnIsLoading1,
+			btnIsLoading2,
+			btnIsLoading3,
 			pagingNext,
 			returnFile,
+			changeLoading1,
+			changeLoading2,
+			changeLoading3,
 		};
 	},
 	components: {
