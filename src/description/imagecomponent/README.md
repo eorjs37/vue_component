@@ -26,7 +26,7 @@ App.vue
 ```html script
 <template>
    <Image
-        :imageurl="'https://imgnews.pstatic.net/image/425/2022/04/07/20220407032632026624fed20d3049816221754_20220407032901728.jpg?type=w647'"
+         :imageurl="'https://imgnews.pstatic.net/image/425/2022/04/07/20220407032632026624fed20d3049816221754_20220407032901728.jpg?type=w647'"
         @onReturnFile="returnFile"
     ></Image>
 </template>   
