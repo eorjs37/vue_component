@@ -31,7 +31,7 @@
 		<h1 class="title mt-30">Button Component</h1>
 		<div class="component">
 			<Button :btntype="'green'" :isloading="btnIsLoading1" @onLoading="changeLoading1()">
-				<template #buttonName> 등록 </template>
+				<template #buttonName> <font-awesome-icon v-if="btnIsLoading1" icon="spinner" spin /> 등록 </template>
 			</Button>
 
 			<Button class="ml-15" :btntype="'red'" :isloading="btnIsLoading2" @onLoading="changeLoading2()">
@@ -52,7 +52,7 @@ import Table from '@/components/Table.vue';
 import Paging from '@/components/Paging.vue';
 import Image from '@/components/Image.vue';
 import Button from '@/components/Button.vue';
-import { ref, onMounted, inject } from 'vue';
+import { ref, onMounted } from 'vue';
 import mock from '../assets/mock/table';
 import Footer from '@/pages/Footer.vue';
 import { notify } from '@kyvg/vue3-notification';

@@ -1,6 +1,6 @@
 <template>
 	<button class="button" :class="btntype" @click="btnClick()">
-		<font-awesome-icon v-if="loading" icon="spinner" spin /> <slot name="buttonName"> 버튼명을입력하세요 </slot>
+		<slot name="buttonName"> 버튼명을입력하세요 </slot>
 	</button>
 </template>
 
