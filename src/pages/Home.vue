@@ -49,6 +49,14 @@
 				</template>
 			</Button>
 		</div>
+
+		<!-- Modal Component -->
+		<h1 class="title mt-30">Modal Component</h1>
+		<div class="component">
+			<Button :btntype="'green'">
+				<template #buttonName> <font-awesome-icon icon="window-maximize" /> Modal </template>
+			</Button>
+		</div>
 	</div>
 	<Footer></Footer>
 	<notifications position="bottom center" />
