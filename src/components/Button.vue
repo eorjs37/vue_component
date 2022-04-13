@@ -5,8 +5,6 @@
 </template>
 
 <script>
-import { toRef } from 'vue';
-
 export default {
 	emits: ['onLoading'],
 	props: {
