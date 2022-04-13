@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import { ref, onMounted, onUpdated } from 'vue';
+import { ref, onMounted, onUpdated, computed } from 'vue';
 import { notify } from '@kyvg/vue3-notification';
 export default {
 	name: 'Paging',
@@ -57,6 +57,13 @@ export default {
 					text: '첫번째 페이지 입니다.',
 				});
 				return false;
+			} else if (page_range.value[0] === 1) {
+				notify({
+					type: 'warn',
+					title: '경고',
+					text: '존재하지 않습니다',
+				});
+				return false;
 			}
 			page_number.value--;
 			const new_range = return_new_range();
@@ -65,7 +72,7 @@ export default {
 		};
 
 		const nextPaging = () => {
-			if (totalpaging.value <= page_number.value) {
+			if (totalpaging.value <= page_number.value || totalpaging.value === page_range.value[page_range.value.length - 1]) {
 				notify({
 					type: 'warn',
 					title: '경고',
