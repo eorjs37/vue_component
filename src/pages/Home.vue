@@ -31,15 +31,22 @@
 		<h1 class="title mt-30">Button Component</h1>
 		<div class="component">
 			<Button :btntype="'green'" @onLoading="changeLoading1()">
-				<template #buttonName> <font-awesome-icon v-if="!btnIsLoading1" icon="plus" /> <font-awesome-icon v-else icon="spinner" spin />등록 </template>
+				<template #buttonName v-if="!btnIsLoading1"> <font-awesome-icon icon="plus" /> 등록 </template>
+				<template #buttonName v-else> <font-awesome-icon icon="spinner" spin /> </template>
 			</Button>
 
 			<Button class="ml-15" :btntype="'red'" @onLoading="changeLoading2()">
-				<template #buttonName> <font-awesome-icon v-if="!btnIsLoading2" icon="minus" /> <font-awesome-icon v-else icon="spinner" spin /> 삭제 </template>
+				<template #buttonName v-if="!btnIsLoading2"> <font-awesome-icon icon="minus" /> 삭제 </template>
+				<template #buttonName v-else>
+					<font-awesome-icon icon="spinner" spin />
+				</template>
 			</Button>
 
 			<Button class="ml-15" :btntype="'blue'" @onLoading="changeLoading3()">
-				<template #buttonName> <font-awesome-icon v-if="!btnIsLoading3" icon="list" /> <font-awesome-icon v-else icon="spinner" spin /> 목록 </template>
+				<template #buttonName v-if="!btnIsLoading3"> <font-awesome-icon icon="list" /> 목록 </template>
+				<template #buttonName v-else>
+					<font-awesome-icon icon="spinner" spin />
+				</template>
 			</Button>
 		</div>
 	</div>

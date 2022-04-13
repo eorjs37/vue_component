@@ -33,9 +33,12 @@ export default {
 	background-color: #fff;
 	border: none;
 	color: #000;
+	width: 130px;
+	height: 38px;
 	text-align: center;
 	font-size: 16px;
-	padding: 16px 32px;
+	line-height: 16px;
+	padding: 6px 20px;
 	border: 2px solid #4caf50;
 	cursor: pointer;
 	transition-duration: 0.4s;
