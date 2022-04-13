@@ -15,21 +15,13 @@ export default {
 			required: false,
 			default: 'success',
 		},
-		isloading: {
-			type: Boolean,
-			required: true,
-			default: false,
-		},
 	},
 	setup(props, context) {
-		const loading = toRef(props, 'isloading');
-
 		const btnClick = () => {
 			context.emit('onLoading');
 		};
 
 		return {
-			loading,
 			btnClick,
 		};
 	},

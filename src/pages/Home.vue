@@ -30,16 +30,16 @@
 		<!-- Button Component -->
 		<h1 class="title mt-30">Button Component</h1>
 		<div class="component">
-			<Button :btntype="'green'" :isloading="btnIsLoading1" @onLoading="changeLoading1()">
-				<template #buttonName> <font-awesome-icon v-if="btnIsLoading1" icon="spinner" spin /> 등록 </template>
+			<Button :btntype="'green'" @onLoading="changeLoading1()">
+				<template #buttonName> <font-awesome-icon v-if="!btnIsLoading1" icon="plus" /> <font-awesome-icon v-else icon="spinner" spin />등록 </template>
 			</Button>
 
-			<Button class="ml-15" :btntype="'red'" :isloading="btnIsLoading2" @onLoading="changeLoading2()">
-				<template #buttonName> 삭제 </template>
+			<Button class="ml-15" :btntype="'red'" @onLoading="changeLoading2()">
+				<template #buttonName> <font-awesome-icon v-if="!btnIsLoading2" icon="minus" /> <font-awesome-icon v-else icon="spinner" spin /> 삭제 </template>
 			</Button>
 
-			<Button class="ml-15" :btntype="'blue'" :isloading="btnIsLoading3" @onLoading="changeLoading3()">
-				<template #buttonName> 목록 </template>
+			<Button class="ml-15" :btntype="'blue'" @onLoading="changeLoading3()">
+				<template #buttonName> <font-awesome-icon v-if="!btnIsLoading3" icon="list" /> <font-awesome-icon v-else icon="spinner" spin /> 목록 </template>
 			</Button>
 		</div>
 	</div>
@@ -53,7 +53,7 @@ import Paging from '@/components/Paging.vue';
 import Image from '@/components/Image.vue';
 import Button from '@/components/Button.vue';
 import { ref, onMounted } from 'vue';
-import mock from '../assets/mock/table';
+import mock from '@/assets/mock/table';
 import Footer from '@/pages/Footer.vue';
 import { notify } from '@kyvg/vue3-notification';
 export default {

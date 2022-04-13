@@ -4,10 +4,9 @@ import Notifications from '@kyvg/vue3-notification';
 
 //fort-awesome
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faUserSecret } from '@fortawesome/free-solid-svg-icons';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faUserSecret, faSpinner, faPlus, faMinus, faList } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-library.add(faUserSecret, faSpinner);
+library.add(faUserSecret, faSpinner, faPlus, faMinus, faList);
 
 //router
 import { router } from './router/router';
