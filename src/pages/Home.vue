@@ -60,6 +60,7 @@
 	</div>
 	<Footer></Footer>
 	<notifications position="bottom center" />
+	<ExModal></ExModal>
 </template>
 
 <script>
@@ -67,6 +68,7 @@ import Table from '@/components/Table.vue';
 import Paging from '@/components/Paging.vue';
 import Image from '@/components/Image.vue';
 import Button from '@/components/Button.vue';
+import ExModal from '@/components/Modal/ExModal.vue';
 import { ref, onMounted } from 'vue';
 import mock from '@/assets/mock/table';
 import Footer from '@/pages/Footer.vue';
@@ -142,6 +144,7 @@ export default {
 		Paging,
 		Image,
 		Button,
+		ExModal,
 		Footer,
 	},
 };
