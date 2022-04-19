@@ -1,10 +1,12 @@
 <template>
 	<transition name="fade">
-		<Modal v-if="ismodal">
-			<template #modalhead> Modal Header </template>
+		<Modal v-if="ismodal" @click="outslideClick($event)" :modaltype="'modal_w800'">
+			<template #modalhead>
+				<h1 class="modal_title white bold">Modal Head</h1>
+			</template>
 
 			<template #close>
-				<h1 @click="exitmodal()">close</h1>
+				<h1 class="modal_exit" @click="exitmodal()"><font-awesome-icon class="white" icon="xmark" /></h1>
 			</template>
 
 			<template #titlebox>Modal Contents Header</template>
@@ -33,8 +35,19 @@ export default {
 			context.emit('exitmodal');
 		};
 
+		/**
+		 * @description 외부 클릭 이벤트
+		 */
+		const outslideClick = event => {
+			const id = event.srcElement.id;
+			if (id === 'modal_wrap') {
+				exitmodal();
+			}
+		};
+
 		return {
 			exitmodal,
+			outslideClick,
 		};
 	},
 	components: {
@@ -45,11 +58,11 @@ export default {
 
 <style lang="scss" scoped>
 .fade-enter-active {
-	animation: fadein 3s;
+	animation: fadein 0.5s;
 }
 
 .fade-leave-active {
-	animation: fadeout 3s;
+	animation: fadeout 0.5s;
 }
 
 @keyframes fadein {

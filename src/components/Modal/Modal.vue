@@ -1,13 +1,13 @@
 <template>
-	<div class="modal_wrap">
-		<div class="modal">
+	<div id="modal_wrap" class="modal_wrap">
+		<div class="modal" :class="width" id="modal">
 			<!-- Modal Head -->
 			<div class="modal_head">
 				<slot name="modalhead">
-					<h1 class="title">헤더내용을 작성하세요</h1>
+					<h3 class="modal_title">헤더내용</h3>
 				</slot>
 				<slot name="close">
-					<h1>닫기아이콘</h1>
+					<h1 class="modal_exit">닫기아이콘</h1>
 				</slot>
 			</div>
 			<!-- Modal Body -->
@@ -26,9 +26,22 @@
 </template>
 
 <script>
+import { ref } from 'vue';
 export default {
-	props: {},
-	setup(props) {},
+	props: {
+		modaltype: {
+			type: String,
+			required: true,
+			default: 'modal_w400',
+		},
+	},
+	setup(props) {
+		const width = ref(props.modaltype);
+
+		return {
+			width,
+		};
+	},
 };
 </script>
 
@@ -49,11 +62,22 @@ export default {
 
 .modal {
 	width: 100%;
-	max-width: 400px;
 	border-radius: 5px;
 	overflow: hidden;
 	background-color: #264db5;
 	box-shadow: 5px 10px 10px 1px rgba(0, 0, 0, 0.3);
+}
+
+.modal_w400 {
+	max-width: 400px;
+}
+
+.modal_w800 {
+	max-width: 800px;
+}
+
+.modal_w1200 {
+	max-width: 1200px;
 }
 
 .modal_head {

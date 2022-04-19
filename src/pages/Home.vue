@@ -53,14 +53,24 @@
 		<!-- Modal Component -->
 		<h1 class="title mt-30">Modal Component</h1>
 		<div class="component">
-			<Button :btntype="'green'" @click="isModal = true">
-				<template #buttonName> <font-awesome-icon icon="window-maximize" /> Modal </template>
+			<Button :btntype="'green'" @click="isModal400 = true">
+				<template #buttonName> <font-awesome-icon icon="window-maximize" /> Modal400 </template>
+			</Button>
+
+			<Button class="ml-15" :btntype="'green'" @click="isModal800 = true">
+				<template #buttonName> <font-awesome-icon icon="window-maximize" /> Modal800 </template>
+			</Button>
+
+			<Button class="ml-15" :btntype="'green'" @click="isModal1200 = true">
+				<template #buttonName> <font-awesome-icon icon="window-maximize" /> Modal1200 </template>
 			</Button>
 		</div>
 	</div>
 	<Footer></Footer>
 	<notifications position="bottom center" />
-	<ExModal :ismodal="isModal" @exitmodal="exitModal()"></ExModal>
+	<Modal400 :ismodal="isModal400" @exitmodal="exitModal400()"></Modal400>
+	<Modal800 :ismodal="isModal800" @exitmodal="exitModal800()"></Modal800>
+	<Modal1200 :ismodal="isModal1200" @exitmodal="exitModal1200()"></Modal1200>
 </template>
 
 <script>
@@ -68,7 +78,9 @@ import Table from '@/components/Table.vue';
 import Paging from '@/components/Paging.vue';
 import Image from '@/components/Image.vue';
 import Button from '@/components/Button.vue';
-import ExModal from '@/components/Modal/ExModal.vue';
+import Modal400 from '@/components/Modal/Modal400.vue';
+import Modal800 from '@/components/Modal/Modal800.vue';
+import Modal1200 from '@/components/Modal/Modal1200.vue';
 import { ref, onMounted } from 'vue';
 import mock from '@/assets/mock/table';
 import Footer from '@/pages/Footer.vue';
@@ -83,7 +95,9 @@ export default {
 		const btnIsLoading1 = ref(false);
 		const btnIsLoading2 = ref(false);
 		const btnIsLoading3 = ref(false);
-		const isModal = ref(false);
+		const isModal400 = ref(false);
+		const isModal800 = ref(false);
+		const isModal1200 = ref(false);
 		const pagingNext = pageNumger => {
 			//axios를 태우시오
 			const page = pageNumger.value ? pageNumger.value : pageNumger;
@@ -122,8 +136,16 @@ export default {
 			btnIsLoading3.value = !btnIsLoading3.value;
 		};
 
-		const exitModal = () => {
-			isModal.value = false;
+		const exitModal400 = () => {
+			isModal400.value = false;
+		};
+
+		const exitModal800 = () => {
+			isModal800.value = false;
+		};
+
+		const exitModal1200 = () => {
+			isModal1200.value = false;
 		};
 
 		onMounted(() => {
@@ -137,13 +159,17 @@ export default {
 			btnIsLoading1,
 			btnIsLoading2,
 			btnIsLoading3,
-			isModal,
+			isModal400,
+			isModal800,
+			isModal1200,
 			pagingNext,
 			returnFile,
 			changeLoading1,
 			changeLoading2,
 			changeLoading3,
-			exitModal,
+			exitModal400,
+			exitModal800,
+			exitModal1200,
 		};
 	},
 	components: {
@@ -151,7 +177,9 @@ export default {
 		Paging,
 		Image,
 		Button,
-		ExModal,
+		Modal400,
+		Modal800,
+		Modal1200,
 		Footer,
 	},
 };
