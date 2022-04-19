@@ -6,7 +6,9 @@
 				<slot name="modalhead">
 					<h1 class="title">헤더내용을 작성하세요</h1>
 				</slot>
-				<h1>닫기아이콘</h1>
+				<slot name="close">
+					<h1>닫기아이콘</h1>
+				</slot>
 			</div>
 			<!-- Modal Body -->
 			<div class="modal_body">
@@ -24,7 +26,10 @@
 </template>
 
 <script>
-export default {};
+export default {
+	props: {},
+	setup(props) {},
+};
 </script>
 
 <style lang="scss" scoped>

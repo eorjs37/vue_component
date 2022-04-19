@@ -53,14 +53,14 @@
 		<!-- Modal Component -->
 		<h1 class="title mt-30">Modal Component</h1>
 		<div class="component">
-			<Button :btntype="'green'">
+			<Button :btntype="'green'" @click="isModal = true">
 				<template #buttonName> <font-awesome-icon icon="window-maximize" /> Modal </template>
 			</Button>
 		</div>
 	</div>
 	<Footer></Footer>
 	<notifications position="bottom center" />
-	<ExModal></ExModal>
+	<ExModal :ismodal="isModal" @exitmodal="exitModal()"></ExModal>
 </template>
 
 <script>
@@ -83,6 +83,7 @@ export default {
 		const btnIsLoading1 = ref(false);
 		const btnIsLoading2 = ref(false);
 		const btnIsLoading3 = ref(false);
+		const isModal = ref(false);
 		const pagingNext = pageNumger => {
 			//axios를 태우시오
 			const page = pageNumger.value ? pageNumger.value : pageNumger;
@@ -121,6 +122,10 @@ export default {
 			btnIsLoading3.value = !btnIsLoading3.value;
 		};
 
+		const exitModal = () => {
+			isModal.value = false;
+		};
+
 		onMounted(() => {
 			pagingNext(1);
 		});
@@ -132,11 +137,13 @@ export default {
 			btnIsLoading1,
 			btnIsLoading2,
 			btnIsLoading3,
+			isModal,
 			pagingNext,
 			returnFile,
 			changeLoading1,
 			changeLoading2,
 			changeLoading3,
+			exitModal,
 		};
 	},
 	components: {
