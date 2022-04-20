@@ -4,9 +4,9 @@
 		<!-- Table Component -->
 		<Table :tlist="tableBody">
 			<template #header>
-				<th>Company</th>
-				<th>Name</th>
-				<th>Contury</th>
+				<th class="w_20per">Company</th>
+				<th class="w_50per">Name</th>
+				<th class="w_30per">Contury</th>
 			</template>
 
 			<template #list="{ row }">

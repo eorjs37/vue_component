@@ -2,7 +2,7 @@
 body{
 	font-family: 'Noto Sans KR', sans-serif !important;
 }
-/* ########################## common ##########################*/
+/*====================== common ======================*/
 .mw-1200 {
 	max-width: 1200px;
 	width: 100%;
@@ -14,6 +14,11 @@ body{
 	font-weight: 700;
 }
 
+.component{
+	margin-top: 20px;
+}
+
+/*====================== table ======================*/
 table {
 	font-family: arial, sans-serif;
 	border-collapse: collapse;
@@ -37,9 +42,15 @@ tr:nth-child(even) {
 	background-color: #dddddd;
 }
 
-.component{
-	margin-top: 20px;
+/*====================== width ======================*/
+@for $i from 1 through 101{
+	.w_#{$i}per{
+		width: ($i * 1%) !important;
+	}
 }
+
+
+/*====================== margin ======================*/
 
 .mt-30{
 	margin-top: 30px !important;
@@ -49,6 +60,8 @@ tr:nth-child(even) {
 	margin-left: 15px !important;
 }
 
+/*====================== modal ======================*/
+
 .modal_title{
 	padding: 0 10px;
 }
@@ -57,12 +70,25 @@ tr:nth-child(even) {
 	padding: 0 10px;
 }
 
-/* color */
+/*====================== color ======================*/
 .white{
 	color: #fff;
 }
 
-/* font */
+/*====================== font ======================*/
 .bold{
 	font-weight: bold;
+}
+
+/*====================== text-align ======================*/
+.txt_left{
+	text-align: left;
+}
+
+.txt_right{
+	text-align: right;
+}
+
+.txt_center{
+	text-align: center;
 }
