@@ -11,6 +11,7 @@ library.add(faUserSecret, faSpinner, faPlus, faMinus, faList, faWindowMaximize, 
 //router
 import { router } from './router/router';
 
+//date-picker
 const app = createApp(App);
 app.use(router);
 app.component('font-awesome-icon', FontAwesomeIcon);

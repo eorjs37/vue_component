@@ -65,6 +65,10 @@
 				<template #buttonName> <font-awesome-icon icon="window-maximize" /> Modal1200 </template>
 			</Button>
 		</div>
+
+		<!-- Date Picker -->
+		<h1 class="title mt-30">Date Picker</h1>
+		<Datepicker class="date_picker" v-model="date"></Datepicker>
 	</div>
 	<Footer></Footer>
 	<notifications position="bottom center" />
@@ -85,6 +89,7 @@ import { ref, onMounted } from 'vue';
 import mock from '@/assets/mock/table';
 import Footer from '@/pages/Footer.vue';
 import { notify } from '@kyvg/vue3-notification';
+import Datepicker from 'vue3-datepicker';
 export default {
 	name: 'App',
 	setup() {
@@ -98,6 +103,8 @@ export default {
 		const isModal400 = ref(false);
 		const isModal800 = ref(false);
 		const isModal1200 = ref(false);
+
+		const date = ref(new Date());
 		const pagingNext = pageNumger => {
 			//axios를 태우시오
 			const page = pageNumger.value ? pageNumger.value : pageNumger;
@@ -162,6 +169,7 @@ export default {
 			isModal400,
 			isModal800,
 			isModal1200,
+			date,
 			pagingNext,
 			returnFile,
 			changeLoading1,
@@ -180,6 +188,7 @@ export default {
 		Modal400,
 		Modal800,
 		Modal1200,
+		Datepicker,
 		Footer,
 	},
 };
@@ -188,4 +197,14 @@ export default {
 <style lang="scss">
 @import '@/assets/style/reset.scss';
 @import '@/assets/style/common.scss';
+
+.date_picker {
+	width: 100%;
+	padding: 12px 18px;
+	margin: 8px 0;
+	display: inline-block;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	box-sizing: border-box;
+}
 </style>
