@@ -10,8 +10,9 @@ export default {};
 
 <style scoped lang="scss">
 footer {
-	max-width: 1920px;
 	width: 100%;
+	min-height: 30px;
 	margin: 0 auto;
+	background-color: #303740;
 }
 </style>

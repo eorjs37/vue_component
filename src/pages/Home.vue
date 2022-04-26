@@ -28,7 +28,7 @@
 		</div>
 
 		<!-- Button Component -->
-		<h1 class="title mt-30">Button Component</h1>
+		<h1 class="title">Button Component</h1>
 		<div class="component">
 			<Button :btntype="'green'" @onLoading="changeLoading1()">
 				<template #buttonName v-if="!btnIsLoading1"> <font-awesome-icon icon="plus" /> 등록 </template>
@@ -51,7 +51,7 @@
 		</div>
 
 		<!-- Modal Component -->
-		<h1 class="title mt-30">Modal Component</h1>
+		<h1 class="title">Modal Component</h1>
 		<div class="component">
 			<Button :btntype="'green'" @click="isModal400 = true">
 				<template #buttonName> <font-awesome-icon icon="window-maximize" /> Modal400 </template>
@@ -67,7 +67,7 @@
 		</div>
 
 		<!-- Date Picker -->
-		<h1 class="title mt-30">Date Picker</h1>
+		<h1 class="title">Date Picker</h1>
 		<Datepicker class="date_picker" v-model="date"></Datepicker>
 	</div>
 	<Footer></Footer>
@@ -87,9 +87,9 @@ import Modal800 from '@/components/Modal/Modal800.vue';
 import Modal1200 from '@/components/Modal/Modal1200.vue';
 import { ref, onMounted } from 'vue';
 import mock from '@/assets/mock/table';
-import Footer from '@/pages/Footer.vue';
 import { notify } from '@kyvg/vue3-notification';
 import Datepicker from 'vue3-datepicker';
+import Footer from '@/pages/Footer.vue';
 export default {
 	name: 'App',
 	setup() {
@@ -206,5 +206,9 @@ export default {
 	border: 1px solid #ccc;
 	border-radius: 4px;
 	box-sizing: border-box;
+
+	&:focus {
+		outline: none;
+	}
 }
 </style>
