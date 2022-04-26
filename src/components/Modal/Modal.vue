@@ -14,7 +14,7 @@
 			<div class="modal_body">
 				<div class="modal_content">
 					<h1 class="title_box">
-						<slot name="titlebox">컨텐트 제목을 작성하세요</slot>
+						<slot name="titlebox">컨텐트 제목을 작성하세요.</slot>
 					</h1>
 					<div class="content_box">
 						<slot name="cotentbox">컨텐트 내용을 채우세요</slot>
