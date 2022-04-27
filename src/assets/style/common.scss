@@ -71,6 +71,14 @@ tr:nth-child(even) {
 	margin-left: 15px !important;
 }
 
+.mr-20px{
+	margin-right: 20px !important;
+}
+
+.mr-50px{
+	margin-right: 50px !important;
+}
+
 /*====================== modal ======================*/
 
 .modal_title{
@@ -102,4 +110,29 @@ tr:nth-child(even) {
 
 .txt_center{
 	text-align: center;
+}
+
+/*====================== float ======================*/
+.float_left{
+	float: left;
+}
+
+.float_right{
+	float: right;
+}
+
+/*====================== overflow ======================*/
+.ov_hidden{
+	overflow: hidden;
+}
+
+/*====================== border ======================*/
+.border_bottom{
+	border-bottom: 1px solid #999999;
+}
+
+
+/*====================== padding ======================*/
+.pb-30px{
+	padding-bottom: 30px;
 }
