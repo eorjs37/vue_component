@@ -28,7 +28,7 @@
 		</div>
 
 		<!-- Button Component -->
-		<h1 class="title">Button Component</h1>
+		<h1 class="title mt-30">Button Component</h1>
 		<div class="component">
 			<Button :btntype="'green'" @onLoading="changeLoading1()">
 				<template #buttonName v-if="!btnIsLoading1"> <font-awesome-icon icon="plus" /> 등록 </template>
@@ -51,7 +51,7 @@
 		</div>
 
 		<!-- Modal Component -->
-		<h1 class="title">Modal Component</h1>
+		<h1 class="title mt-30">Modal Component</h1>
 		<div class="component">
 			<Button :btntype="'green'" @click="isModal400 = true">
 				<template #buttonName> <font-awesome-icon icon="window-maximize" /> Modal400 </template>
@@ -67,8 +67,41 @@
 		</div>
 
 		<!-- Date Picker -->
-		<h1 class="title">Date Picker</h1>
-		<Datepicker class="date_picker" v-model="date"></Datepicker>
+		<h1 class="title mt-30">Date Picker</h1>
+		<Datepicker class="date_picker component" v-model="date"></Datepicker>
+
+		<!-- swiper -->
+		<h1 class="title mt-30">Swiper</h1>
+		<swiper
+			:slides-per-view="4"
+			:loop="true"
+			:speed="1000"
+			:autoplay="{
+				delay: 1,
+				disableOnInteraction: false,
+			}"
+			:modules="modules"
+			class="swiper-container-free-mode component"
+		>
+			<swiper-slide class="swiper-wrapper txt_center">
+				<img class="slideimage" src="../assets/images/company/adobe.png" />
+			</swiper-slide>
+			<swiper-slide class="swiper-wrapper txt_center">
+				<img class="slideimage" src="../assets/images/company/amd.png" />
+			</swiper-slide>
+			<swiper-slide class="swiper-wrapper txt_center">
+				<img class="slideimage" src="../assets/images/company/apple.png" />
+			</swiper-slide>
+			<swiper-slide class="swiper-wrapper txt_center">
+				<img class="slideimage" src="../assets/images/company/ebay.png" />
+			</swiper-slide>
+			<swiper-slide class="swiper-wrapper txt_center">
+				<img class="slideimage" src="../assets/images/company/facebokk.png" />
+			</swiper-slide>
+			<swiper-slide class="swiper-wrapper txt_center">
+				<img class="slideimage" src="../assets/images/company/google.png" />
+			</swiper-slide>
+		</swiper>
 	</div>
 	<Footer></Footer>
 	<notifications position="bottom center" />
@@ -89,6 +122,15 @@ import { ref, onMounted } from 'vue';
 import mock from '@/assets/mock/table';
 import { notify } from '@kyvg/vue3-notification';
 import Datepicker from 'vue3-datepicker';
+
+// Import Swiper Vue.js components
+import { Swiper } from 'swiper/vue/swiper';
+import { SwiperSlide } from 'swiper/vue/swiper-slide';
+// import required modules
+import { Autoplay } from 'swiper';
+// Import Swiper styles
+import 'swiper/swiper.scss';
+
 import Footer from '@/pages/Footer.vue';
 export default {
 	name: 'App',
@@ -178,6 +220,7 @@ export default {
 			exitModal400,
 			exitModal800,
 			exitModal1200,
+			modules: [Autoplay],
 		};
 	},
 	components: {
@@ -190,6 +233,8 @@ export default {
 		Modal1200,
 		Datepicker,
 		Footer,
+		Swiper,
+		SwiperSlide,
 	},
 };
 </script>
@@ -210,5 +255,13 @@ export default {
 	&:focus {
 		outline: none;
 	}
+}
+
+.slideimage {
+	width: 100%;
+}
+
+.swiper-container-free-mode > .swiper-wrapper {
+	transition-timing-function: linear;
 }
 </style>
