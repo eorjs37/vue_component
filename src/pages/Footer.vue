@@ -68,7 +68,15 @@
 					</li>
 				</ul>
 			</div>
-			<div class="companyinformation"></div>
+			<div class="companyinformation">
+				<ul class="ov_hidden">
+					<li class="float_left txt_left">
+						<span>(주)xx영어 | 대표자:xxx | 사업자번호: xxx-xx-xxxxx</span> <br />
+						<span>대표이사 xxx Copyright <b>ⓒxxxx xxxxxx Inc.</b> All rights reserved.</span> <br />
+					</li>
+					<li class="float_right"></li>
+				</ul>
+			</div>
 		</div>
 	</footer>
 </template>
@@ -103,6 +111,13 @@ footer {
 	}
 
 	.sub_menu_item {
+		font-size: 12px;
+		color: #999999;
+		line-height: 2.1rem;
+		cursor: pointer;
+	}
+
+	.companyinformation {
 		font-size: 12px;
 		color: #999999;
 		line-height: 2.1rem;

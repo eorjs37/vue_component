@@ -75,7 +75,7 @@
 		<swiper
 			:slides-per-view="4"
 			:loop="true"
-			:speed="1000"
+			:speed="2000"
 			:autoplay="{
 				delay: 1,
 				disableOnInteraction: false,
@@ -162,7 +162,7 @@ export default {
 		const changeLoading1 = () => {
 			if (!btnIsLoading1.value) {
 				btnIsLoading1.value = !btnIsLoading1.value;
-				new Promise((resolve, reject) => {
+				new Promise(resolve => {
 					setTimeout(function () {
 						btnIsLoading1.value = !btnIsLoading1.value;
 						resolve('success');
