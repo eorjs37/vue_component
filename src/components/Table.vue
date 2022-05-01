@@ -14,7 +14,7 @@
 				</tr>
 			</template>
 			<tr v-if="tlist.length === 0">
-				<td colspan="99">검색결과가 없습니다.</td>
+				<td colspan="99">검색결과가 없습니다</td>
 			</tr>
 		</tbody>
 	</table>
