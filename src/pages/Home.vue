@@ -102,6 +102,10 @@
 				<img class="slideimage" src="../assets/images/company/google.png" />
 			</swiper-slide>
 		</swiper>
+
+		<!-- Router -->
+		<h1 class="title mt-30">Router</h1>
+		<button @click="goNext()">Next</button>
 	</div>
 	<Footer></Footer>
 	<notifications position="bottom center" />
@@ -132,6 +136,9 @@ import { Autoplay } from 'swiper';
 import 'swiper/swiper.scss';
 
 import Footer from '@/pages/Footer.vue';
+
+//router
+import { useRouter } from 'vue-router';
 export default {
 	name: 'App',
 	setup() {
@@ -147,6 +154,7 @@ export default {
 		const isModal1200 = ref(false);
 
 		const date = ref(new Date());
+		const router = useRouter();
 		const pagingNext = pageNumger => {
 			//axios를 태우시오
 			const page = pageNumger.value ? pageNumger.value : pageNumger;
@@ -197,6 +205,14 @@ export default {
 			isModal1200.value = false;
 		};
 
+		const goNext = () => {
+			const username = 'eduardo';
+			router.push({
+				name: 'mail',
+				params: { username },
+			});
+		};
+
 		onMounted(() => {
 			pagingNext(1);
 		});
@@ -220,6 +236,7 @@ export default {
 			exitModal400,
 			exitModal800,
 			exitModal1200,
+			goNext,
 			modules: [Autoplay],
 		};
 	},

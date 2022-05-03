@@ -5,7 +5,19 @@
 </template>
 
 <script>
-export default {};
+import { onMounted } from '@vue/runtime-core';
+import { useRoute, useRouter } from 'vue-router';
+export default {
+	name: 'mail',
+	setup() {
+		const route = useRoute();
+		const router = useRouter();
+		onMounted(() => {
+			console.log('route : ', route.params.username);
+			console.log('router : ', router);
+		});
+	},
+};
 </script>
 
 <style scoped lang="scss">
