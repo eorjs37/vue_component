@@ -1,113 +1,80 @@
 <template>
-	<div class="mw-1200">
-		<h1 class="title">Table Component</h1>
-		<!-- Table Component -->
-		<Table :tlist="tableBody">
-			<template #header>
-				<th class="w_20per">Company</th>
-				<th class="w_50per">Name</th>
-				<th class="w_30per">Contury</th>
-			</template>
+	<div class="mw_1920">
+		<SideBar class="sidebar"></SideBar>
 
-			<template #list="{ row }">
-				<td>{{ row.item1 }}</td>
-				<td>{{ row.item2 }}</td>
-				<td>{{ row.item3 }}</td>
-			</template>
-		</Table>
-		<!-- Paging Component -->
-		<Paging :totaldata="totalCount" :pagingdata="5" :pagingrange="5" @onPaging="pagingNext"></Paging>
-
-		<!-- Image Component -->
-		<h1 class="title">Image Component</h1>
-		<div class="component">
-			<Image
-				:imageurl="'https://imgnews.pstatic.net/image/425/2022/04/07/20220407032632026624fed20d3049816221754_20220407032901728.jpg?type=w647'"
-				@onReturnFile="returnFile"
-			></Image>
-		</div>
-
-		<!-- Button Component -->
-		<h1 class="title mt-30">Button Component</h1>
-		<div class="component">
-			<Button :btntype="'green'" @onLoading="changeLoading1()">
-				<template #buttonName v-if="!btnIsLoading1"> <font-awesome-icon icon="plus" /> 등록 </template>
-				<template #buttonName v-else> <font-awesome-icon icon="spinner" spin /> </template>
-			</Button>
-
-			<Button class="ml-15" :btntype="'red'" @onLoading="changeLoading2()">
-				<template #buttonName v-if="!btnIsLoading2"> <font-awesome-icon icon="minus" /> 삭제 </template>
-				<template #buttonName v-else>
-					<font-awesome-icon icon="spinner" spin />
+		<div class="main">
+			<h1 class="title">Table Component</h1>
+			<!-- Table Component -->
+			<Table :tlist="tableBody">
+				<template #header>
+					<th class="w_20per">Company</th>
+					<th class="w_50per">Name</th>
+					<th class="w_30per">Contury</th>
 				</template>
-			</Button>
 
-			<Button class="ml-15" :btntype="'blue'" @onLoading="changeLoading3()">
-				<template #buttonName v-if="!btnIsLoading3"> <font-awesome-icon icon="list" /> 목록 </template>
-				<template #buttonName v-else>
-					<font-awesome-icon icon="spinner" spin />
+				<template #list="{ row }">
+					<td>{{ row.item1 }}</td>
+					<td>{{ row.item2 }}</td>
+					<td>{{ row.item3 }}</td>
 				</template>
-			</Button>
+			</Table>
+			<!-- Paging Component -->
+			<Paging :totaldata="totalCount" :pagingdata="5" :pagingrange="5" @onPaging="pagingNext"></Paging>
+
+			<!-- Date Picker -->
+			<h1 class="title mt-30">Date Picker</h1>
+			<Datepicker class="date_picker component" v-model="date"></Datepicker>
+
+			<!-- Image Component -->
+			<h1 class="title">Image Component</h1>
+			<div class="component">
+				<Image
+					:imageurl="'https://imgnews.pstatic.net/image/425/2022/04/07/20220407032632026624fed20d3049816221754_20220407032901728.jpg?type=w647'"
+					@onReturnFile="returnFile"
+				></Image>
+			</div>
+
+			<!-- Button Component -->
+			<h1 class="title mt-30">Button Component</h1>
+			<div class="component">
+				<Button :btntype="'green'" @onLoading="changeLoading1()">
+					<template #buttonName v-if="!btnIsLoading1"> <font-awesome-icon icon="plus" /> 등록 </template>
+					<template #buttonName v-else> <font-awesome-icon icon="spinner" spin /> </template>
+				</Button>
+
+				<Button class="ml-15" :btntype="'red'" @onLoading="changeLoading2()">
+					<template #buttonName v-if="!btnIsLoading2"> <font-awesome-icon icon="minus" /> 삭제 </template>
+					<template #buttonName v-else>
+						<font-awesome-icon icon="spinner" spin />
+					</template>
+				</Button>
+
+				<Button class="ml-15" :btntype="'blue'" @onLoading="changeLoading3()">
+					<template #buttonName v-if="!btnIsLoading3"> <font-awesome-icon icon="list" /> 목록 </template>
+					<template #buttonName v-else>
+						<font-awesome-icon icon="spinner" spin />
+					</template>
+				</Button>
+			</div>
+
+			<!-- Modal Component -->
+			<h1 class="title mt-30">Modal Component</h1>
+			<div class="component">
+				<Button :btntype="'green'" @click="isModal400 = true">
+					<template #buttonName> <font-awesome-icon icon="window-maximize" /> Modal400 </template>
+				</Button>
+
+				<Button class="ml-15" :btntype="'green'" @click="isModal800 = true">
+					<template #buttonName> <font-awesome-icon icon="window-maximize" /> Modal800 </template>
+				</Button>
+
+				<Button class="ml-15" :btntype="'green'" @click="isModal1200 = true">
+					<template #buttonName> <font-awesome-icon icon="window-maximize" /> Modal1200 </template>
+				</Button>
+			</div>
 		</div>
-
-		<!-- Modal Component -->
-		<h1 class="title mt-30">Modal Component</h1>
-		<div class="component">
-			<Button :btntype="'green'" @click="isModal400 = true">
-				<template #buttonName> <font-awesome-icon icon="window-maximize" /> Modal400 </template>
-			</Button>
-
-			<Button class="ml-15" :btntype="'green'" @click="isModal800 = true">
-				<template #buttonName> <font-awesome-icon icon="window-maximize" /> Modal800 </template>
-			</Button>
-
-			<Button class="ml-15" :btntype="'green'" @click="isModal1200 = true">
-				<template #buttonName> <font-awesome-icon icon="window-maximize" /> Modal1200 </template>
-			</Button>
-		</div>
-
-		<!-- Date Picker -->
-		<h1 class="title mt-30">Date Picker</h1>
-		<Datepicker class="date_picker component" v-model="date"></Datepicker>
-
-		<!-- swiper -->
-		<h1 class="title mt-30">Swiper</h1>
-		<swiper
-			:slides-per-view="4"
-			:loop="true"
-			:speed="2000"
-			:autoplay="{
-				delay: 1,
-				disableOnInteraction: false,
-			}"
-			:modules="modules"
-			class="swiper-container-free-mode component"
-		>
-			<swiper-slide class="swiper-wrapper txt_center">
-				<img class="slideimage" src="../assets/images/company/adobe.png" />
-			</swiper-slide>
-			<swiper-slide class="swiper-wrapper txt_center">
-				<img class="slideimage" src="../assets/images/company/amd.png" />
-			</swiper-slide>
-			<swiper-slide class="swiper-wrapper txt_center">
-				<img class="slideimage" src="../assets/images/company/apple.png" />
-			</swiper-slide>
-			<swiper-slide class="swiper-wrapper txt_center">
-				<img class="slideimage" src="../assets/images/company/ebay.png" />
-			</swiper-slide>
-			<swiper-slide class="swiper-wrapper txt_center">
-				<img class="slideimage" src="../assets/images/company/facebokk.png" />
-			</swiper-slide>
-			<swiper-slide class="swiper-wrapper txt_center">
-				<img class="slideimage" src="../assets/images/company/google.png" />
-			</swiper-slide>
-		</swiper>
-
-		<!-- Router -->
-		<h1 class="title mt-30">Router</h1>
-		<button @click="goNext()">Next</button>
 	</div>
-	<Footer></Footer>
+
 	<notifications position="bottom center" />
 	<Modal400 :ismodal="isModal400" @exitmodal="exitModal400()"></Modal400>
 	<Modal800 :ismodal="isModal800" @exitmodal="exitModal800()"></Modal800>
@@ -127,20 +94,24 @@ import mock from '@/assets/mock/table';
 import { notify } from '@kyvg/vue3-notification';
 import Datepicker from 'vue3-datepicker';
 
-// Import Swiper Vue.js components
-import { Swiper } from 'swiper/vue/swiper';
-import { SwiperSlide } from 'swiper/vue/swiper-slide';
-// import required modules
-import { Autoplay } from 'swiper';
-// Import Swiper styles
-import 'swiper/swiper.scss';
-
-import Footer from '@/pages/Footer.vue';
+//sidebar
+import SideBar from '@/components/SideBar.vue';
 
 //router
 import { useRouter } from 'vue-router';
 export default {
 	name: 'App',
+	components: {
+		Table,
+		Paging,
+		Image,
+		Button,
+		Modal400,
+		Modal800,
+		Modal1200,
+		Datepicker,
+		SideBar,
+	},
 	setup() {
 		const tableHead = ref(['company', 'Contact', 'Country']);
 		const tableBody = ref([]);
@@ -205,14 +176,6 @@ export default {
 			isModal1200.value = false;
 		};
 
-		const goNext = () => {
-			const username = 'eduardo';
-			router.push({
-				name: 'mail',
-				params: { username },
-			});
-		};
-
 		onMounted(() => {
 			pagingNext(1);
 		});
@@ -236,22 +199,7 @@ export default {
 			exitModal400,
 			exitModal800,
 			exitModal1200,
-			goNext,
-			modules: [Autoplay],
 		};
-	},
-	components: {
-		Table,
-		Paging,
-		Image,
-		Button,
-		Modal400,
-		Modal800,
-		Modal1200,
-		Datepicker,
-		Footer,
-		Swiper,
-		SwiperSlide,
 	},
 };
 </script>

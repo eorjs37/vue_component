@@ -1,3 +1,37 @@
 #app{
     background-color: #eee;
 }
+
+.mw_1920{
+    width: 100%;
+    display: flex;
+}
+
+.sidebar{
+    width: 15%;
+    background-color: #fff;
+    padding: 10px;
+
+    .menu_title{
+        font-size: 25px;
+        font-weight: 700;
+        font-family: 'Noto Sans KR', sans-serif !important;
+    }
+
+    .menu_list{
+        margin-top: 30px;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .item{
+        padding: 5px;
+        font-family: 'Noto Sans KR', sans-serif !important;
+        font-size: 18px;
+    }
+}
+
+.main{
+    width: 85%;
+    padding: 0 30px;
+}

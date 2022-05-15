@@ -17,7 +17,6 @@ body{
 .mw-1200 {
 	max-width: 1200px;
 	width: 100%;
-	margin: 0 auto;
 }
 
 .title{
@@ -27,6 +26,10 @@ body{
 
 .component{
 	margin-top: 20px;
+}
+
+.pointer{
+	cursor: pointer;
 }
 
 /*====================== table ======================*/
