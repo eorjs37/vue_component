@@ -4,13 +4,20 @@
 
 		<div class="menu_list">
 			<div class="item">
+				<font-awesome-icon icon="home" />
 				<span class="pointer"> 홈 </span>
 			</div>
 			<div class="item">
-				<span class="pointer"> 리스트 </span>
+				<font-awesome-icon icon="chalkboard" />
+				<span class="pointer"> 게시판 </span>
 			</div>
 			<div class="item">
+				<font-awesome-icon icon="chart-bar" />
 				<span class="pointer"> 차트 </span>
+			</div>
+			<div class="item">
+				<font-awesome-icon icon="recycle" />
+				<span class="pointer"> 컴퍼넌트 </span>
 			</div>
 		</div>
 	</div>
