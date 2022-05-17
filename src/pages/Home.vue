@@ -72,6 +72,12 @@
 					<template #buttonName> <font-awesome-icon icon="window-maximize" /> Modal1200 </template>
 				</Button>
 			</div>
+
+			<!-- Modal Component -->
+			<h1 class="title mt-30">QuillEditor Component</h1>
+			<div class="mt-30">
+				<QuillEditor theme="snow" />
+			</div>
 		</div>
 	</div>
 
@@ -97,6 +103,10 @@ import Datepicker from 'vue3-datepicker';
 //sidebar
 import SideBar from '@/components/SideBar.vue';
 
+//vue-quill(editor)
+import { QuillEditor } from '@vueup/vue-quill';
+import '@vueup/vue-quill/dist/vue-quill.snow.css';
+
 //router
 import { useRouter } from 'vue-router';
 export default {
@@ -111,6 +121,7 @@ export default {
 		Modal1200,
 		Datepicker,
 		SideBar,
+		QuillEditor,
 	},
 	setup() {
 		const tableHead = ref(['company', 'Contact', 'Country']);
