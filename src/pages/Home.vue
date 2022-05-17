@@ -1,83 +1,79 @@
 <template>
-	<div class="mw_1920">
-		<SideBar class="sidebar"></SideBar>
+	<div>
+		<h1 class="title">Table Component</h1>
+		<!-- Table Component -->
+		<Table :tlist="tableBody">
+			<template #header>
+				<th class="w_20per">Company</th>
+				<th class="w_50per">Name</th>
+				<th class="w_30per">Contury</th>
+			</template>
 
-		<div class="main">
-			<h1 class="title">Table Component</h1>
-			<!-- Table Component -->
-			<Table :tlist="tableBody">
-				<template #header>
-					<th class="w_20per">Company</th>
-					<th class="w_50per">Name</th>
-					<th class="w_30per">Contury</th>
+			<template #list="{ row }">
+				<td>{{ row.item1 }}</td>
+				<td>{{ row.item2 }}</td>
+				<td>{{ row.item3 }}</td>
+			</template>
+		</Table>
+		<!-- Paging Component -->
+		<Paging :totaldata="totalCount" :pagingdata="5" :pagingrange="5" @onPaging="pagingNext"></Paging>
+
+		<!-- Date Picker -->
+		<h1 class="title mt-30">Date Picker</h1>
+		<Datepicker class="date_picker component" v-model="date"></Datepicker>
+
+		<!-- Image Component -->
+		<h1 class="title">Image Component</h1>
+		<div class="component">
+			<Image
+				:imageurl="'https://imgnews.pstatic.net/image/425/2022/04/07/20220407032632026624fed20d3049816221754_20220407032901728.jpg?type=w647'"
+				@onReturnFile="returnFile"
+			></Image>
+		</div>
+
+		<!-- Button Component -->
+		<h1 class="title mt-30">Button Component</h1>
+		<div class="component">
+			<Button :btntype="'green'" @onLoading="changeLoading1()">
+				<template #buttonName v-if="!btnIsLoading1"> <font-awesome-icon icon="plus" /> 등록 </template>
+				<template #buttonName v-else> <font-awesome-icon icon="spinner" spin /> </template>
+			</Button>
+
+			<Button class="ml-15" :btntype="'red'" @onLoading="changeLoading2()">
+				<template #buttonName v-if="!btnIsLoading2"> <font-awesome-icon icon="minus" /> 삭제 </template>
+				<template #buttonName v-else>
+					<font-awesome-icon icon="spinner" spin />
 				</template>
+			</Button>
 
-				<template #list="{ row }">
-					<td>{{ row.item1 }}</td>
-					<td>{{ row.item2 }}</td>
-					<td>{{ row.item3 }}</td>
+			<Button class="ml-15" :btntype="'blue'" @onLoading="changeLoading3()">
+				<template #buttonName v-if="!btnIsLoading3"> <font-awesome-icon icon="list" /> 목록 </template>
+				<template #buttonName v-else>
+					<font-awesome-icon icon="spinner" spin />
 				</template>
-			</Table>
-			<!-- Paging Component -->
-			<Paging :totaldata="totalCount" :pagingdata="5" :pagingrange="5" @onPaging="pagingNext"></Paging>
+			</Button>
+		</div>
 
-			<!-- Date Picker -->
-			<h1 class="title mt-30">Date Picker</h1>
-			<Datepicker class="date_picker component" v-model="date"></Datepicker>
+		<!-- Modal Component -->
+		<h1 class="title mt-30">Modal Component</h1>
+		<div class="component">
+			<Button :btntype="'green'" @click="isModal400 = true">
+				<template #buttonName> <font-awesome-icon icon="window-maximize" /> Modal400 </template>
+			</Button>
 
-			<!-- Image Component -->
-			<h1 class="title">Image Component</h1>
-			<div class="component">
-				<Image
-					:imageurl="'https://imgnews.pstatic.net/image/425/2022/04/07/20220407032632026624fed20d3049816221754_20220407032901728.jpg?type=w647'"
-					@onReturnFile="returnFile"
-				></Image>
-			</div>
+			<Button class="ml-15" :btntype="'green'" @click="isModal800 = true">
+				<template #buttonName> <font-awesome-icon icon="window-maximize" /> Modal800 </template>
+			</Button>
 
-			<!-- Button Component -->
-			<h1 class="title mt-30">Button Component</h1>
-			<div class="component">
-				<Button :btntype="'green'" @onLoading="changeLoading1()">
-					<template #buttonName v-if="!btnIsLoading1"> <font-awesome-icon icon="plus" /> 등록 </template>
-					<template #buttonName v-else> <font-awesome-icon icon="spinner" spin /> </template>
-				</Button>
+			<Button class="ml-15" :btntype="'green'" @click="isModal1200 = true">
+				<template #buttonName> <font-awesome-icon icon="window-maximize" /> Modal1200 </template>
+			</Button>
+		</div>
 
-				<Button class="ml-15" :btntype="'red'" @onLoading="changeLoading2()">
-					<template #buttonName v-if="!btnIsLoading2"> <font-awesome-icon icon="minus" /> 삭제 </template>
-					<template #buttonName v-else>
-						<font-awesome-icon icon="spinner" spin />
-					</template>
-				</Button>
-
-				<Button class="ml-15" :btntype="'blue'" @onLoading="changeLoading3()">
-					<template #buttonName v-if="!btnIsLoading3"> <font-awesome-icon icon="list" /> 목록 </template>
-					<template #buttonName v-else>
-						<font-awesome-icon icon="spinner" spin />
-					</template>
-				</Button>
-			</div>
-
-			<!-- Modal Component -->
-			<h1 class="title mt-30">Modal Component</h1>
-			<div class="component">
-				<Button :btntype="'green'" @click="isModal400 = true">
-					<template #buttonName> <font-awesome-icon icon="window-maximize" /> Modal400 </template>
-				</Button>
-
-				<Button class="ml-15" :btntype="'green'" @click="isModal800 = true">
-					<template #buttonName> <font-awesome-icon icon="window-maximize" /> Modal800 </template>
-				</Button>
-
-				<Button class="ml-15" :btntype="'green'" @click="isModal1200 = true">
-					<template #buttonName> <font-awesome-icon icon="window-maximize" /> Modal1200 </template>
-				</Button>
-			</div>
-
-			<!-- Modal Component -->
-			<h1 class="title mt-30">QuillEditor Component</h1>
-			<div class="mt-30">
-				<QuillEditor theme="snow" />
-			</div>
+		<!-- Modal Component -->
+		<h1 class="title mt-30">QuillEditor Component</h1>
+		<div class="mt-30">
+			<QuillEditor theme="snow" />
 		</div>
 	</div>
 
@@ -100,9 +96,6 @@ import mock from '@/assets/mock/table';
 import { notify } from '@kyvg/vue3-notification';
 import Datepicker from 'vue3-datepicker';
 
-//sidebar
-import SideBar from '@/components/SideBar.vue';
-
 //vue-quill(editor)
 import { QuillEditor } from '@vueup/vue-quill';
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
@@ -120,7 +113,6 @@ export default {
 		Modal800,
 		Modal1200,
 		Datepicker,
-		SideBar,
 		QuillEditor,
 	},
 	setup() {
@@ -216,9 +208,6 @@ export default {
 </script>
 
 <style lang="scss">
-@import '@/assets/style/reset.scss';
-@import '@/assets/style/common.scss';
-
 .date_picker {
 	width: 100%;
 	padding: 12px 18px;

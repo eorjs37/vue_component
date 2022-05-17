@@ -1,7 +1,7 @@
 <template>
 	<div class="mw_1920">
 		<SideBar class="sidebar"></SideBar>
-		<router-view></router-view>
+		<router-view class="main"></router-view>
 	</div>
 </template>
 
@@ -16,4 +16,7 @@ export default {
 };
 </script>
 
-<style></style>
+<style lang="scss">
+@import '@/assets/style/reset.scss';
+@import '@/assets/style/common.scss';
+</style>

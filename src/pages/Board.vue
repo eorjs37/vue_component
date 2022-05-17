@@ -1,9 +1,11 @@
 <template>
-	<h1>Board</h1>
+	<div>
+		<h1>Board</h1>
+	</div>
 </template>
 
 <script>
 export default {};
 </script>
 
-<style></style>
+<style lang="scss"></style>
