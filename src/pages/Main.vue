@@ -1,7 +1,9 @@
 <template>
 	<div class="mw_1920">
 		<SideBar class="sidebar"></SideBar>
-		<router-view class="main"></router-view>
+		<div class="main">
+			<router-view></router-view>
+		</div>
 	</div>
 </template>
 

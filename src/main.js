@@ -16,9 +16,10 @@ import {
 	faChalkboard,
 	faChartBar,
 	faRecycle,
+	faMagnifyingGlass,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-library.add(faUserSecret, faSpinner, faPlus, faMinus, faList, faWindowMaximize, faXmark, faHome, faChalkboard, faChartBar, faRecycle);
+library.add(faUserSecret, faSpinner, faPlus, faMinus, faList, faWindowMaximize, faXmark, faHome, faChalkboard, faChartBar, faRecycle, faMagnifyingGlass);
 
 //router
 import { router } from './router/router';

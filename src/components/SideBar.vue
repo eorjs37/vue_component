@@ -5,11 +5,11 @@
 		<div class="menu_list">
 			<div class="item">
 				<font-awesome-icon icon="home" />
-				<span class="pointer"> 홈 </span>
+				<span class="pointer" @click="move('/home')"> 홈 </span>
 			</div>
 			<div class="item">
 				<font-awesome-icon icon="chalkboard" />
-				<span class="pointer"> 게시판 </span>
+				<span class="pointer" @click="move('/board')"> 게시판 </span>
 			</div>
 			<div class="item">
 				<font-awesome-icon icon="chart-bar" />
@@ -24,7 +24,23 @@
 </template>
 
 <script>
-export default {};
+import { reactive } from 'vue';
+import { useRouter } from 'vue-router';
+export default {
+	setup() {
+		const router = useRouter();
+		const sidebar = reactive({});
+
+		const move = str => {
+			router.push(str);
+		};
+
+		return {
+			sidebar,
+			move,
+		};
+	},
+};
 </script>
 
 <style></style>

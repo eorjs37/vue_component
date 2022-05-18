@@ -1,6 +1,11 @@
 <template>
 	<div>
-		<h1>Board</h1>
+		<h1 class="serarch_title">Board</h1>
+		<div class="search_box">
+			<div class="col_4">
+				<input type="text" class="input_box" placeholder="제목을 입력하세요" />
+			</div>
+		</div>
 	</div>
 </template>
 

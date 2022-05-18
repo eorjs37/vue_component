@@ -104,6 +104,7 @@ import '@vueup/vue-quill/dist/vue-quill.snow.css';
 import { useRouter } from 'vue-router';
 export default {
 	name: 'App',
+	inheritAttrs: true,
 	components: {
 		Table,
 		Paging,

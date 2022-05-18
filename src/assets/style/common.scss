@@ -139,3 +139,65 @@ tr:nth-child(even) {
 .pb-30px{
 	padding-bottom: 30px;
 }
+
+
+/*====================== col ======================*/
+.col_12{
+    display: inline-block;
+    width: 100%;
+}
+
+.col_11{
+    display: inline-block;
+    width: calc(11 * 8.3%);
+}
+
+.col_10{
+    display: inline-block;
+    width: calc(10 * 8.3%);
+}
+
+.col_9{
+    display: inline-block;
+    width: calc(9 * 8.3%);
+}
+
+.col_8{
+    display: inline-block;
+    width: calc(8 * 8.3%);
+}
+
+.col_7{
+    display: inline-block;
+    width: calc(7 * 8.3%);
+}
+
+.col_6{
+    display: inline-block;
+    width: calc(6 * 8.3%);
+}
+
+.col_5{
+    display: inline-block;
+    width: calc(5 * 8.3%);
+}
+
+.col_4{
+    display: inline-block;
+    width: calc(4 * 8.3%);
+}
+
+.col_3{
+    display: inline-block;
+    width: calc(3 * 8.3%);
+}
+
+.col_2{
+    display: inline-block;
+    width: calc(2 * 8.3%);
+}
+
+.col_1{
+    display: inline-block;
+    width: calc(1 * 8.3%);
+}
