@@ -2,6 +2,7 @@
 *{
 	margin: 0;
 	padding: 0;
+	box-sizing: border-box;
 }
 body {
     margin: 0;
@@ -145,6 +146,7 @@ tr:nth-child(even) {
 .col_12{
     display: inline-block;
     width: 100%;
+	padding: 10px;
 }
 
 .col_11{
@@ -160,44 +162,53 @@ tr:nth-child(even) {
 .col_9{
     display: inline-block;
     width: calc(9 * 8.3%);
+	padding: 10px;
 }
 
 .col_8{
     display: inline-block;
     width: calc(8 * 8.3%);
+	padding: 10px;
 }
 
 .col_7{
     display: inline-block;
     width: calc(7 * 8.3%);
+	padding: 10px;
 }
 
 .col_6{
     display: inline-block;
     width: calc(6 * 8.3%);
+	padding: 10px;
 }
 
 .col_5{
     display: inline-block;
     width: calc(5 * 8.3%);
+	padding: 10px;
 }
 
 .col_4{
     display: inline-block;
     width: calc(4 * 8.3%);
+	padding: 10px;
 }
 
 .col_3{
     display: inline-block;
     width: calc(3 * 8.3%);
+	padding: 10px;
 }
 
 .col_2{
     display: inline-block;
     width: calc(2 * 8.3%);
+	padding: 10px;
 }
 
 .col_1{
     display: inline-block;
     width: calc(1 * 8.3%);
+	padding: 10px;
 }
