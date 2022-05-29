@@ -84,12 +84,6 @@
 </template>
 
 <script>
-import Table from '@/components/Table.vue';
-import Image from '@/components/Image.vue';
-import Button from '@/components/Button.vue';
-import Modal400 from '@/components/Modal/Modal400.vue';
-import Modal800 from '@/components/Modal/Modal800.vue';
-import Modal1200 from '@/components/Modal/Modal1200.vue';
 import { ref, onMounted } from 'vue';
 import mock from '@/assets/mock/table';
 import { notify } from '@kyvg/vue3-notification';
@@ -105,12 +99,6 @@ export default {
 	name: 'App',
 	inheritAttrs: true,
 	components: {
-		Table,
-		Image,
-		Button,
-		Modal400,
-		Modal800,
-		Modal1200,
 		Datepicker,
 		QuillEditor,
 	},
