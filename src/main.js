@@ -24,9 +24,13 @@ library.add(faUserSecret, faSpinner, faPlus, faMinus, faList, faWindowMaximize, 
 //router
 import { router } from './router/router';
 
+//global component
+import Paging from '@/components/Paging.vue';
+
 //date-picker
 const app = createApp(App);
 app.use(router);
 app.component('font-awesome-icon', FontAwesomeIcon);
+app.component('Paging', Paging);
 app.use(Notifications);
 app.mount('#app');

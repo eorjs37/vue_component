@@ -85,7 +85,6 @@
 
 <script>
 import Table from '@/components/Table.vue';
-import Paging from '@/components/Paging.vue';
 import Image from '@/components/Image.vue';
 import Button from '@/components/Button.vue';
 import Modal400 from '@/components/Modal/Modal400.vue';
@@ -107,7 +106,6 @@ export default {
 	inheritAttrs: true,
 	components: {
 		Table,
-		Paging,
 		Image,
 		Button,
 		Modal400,
@@ -130,6 +128,7 @@ export default {
 
 		const date = ref(new Date());
 		const router = useRouter();
+
 		const pagingNext = pageNumger => {
 			//axios를 태우시오
 			const page = pageNumger.value ? pageNumger.value : pageNumger;

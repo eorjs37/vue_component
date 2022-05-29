@@ -57,22 +57,18 @@ export default {
 					text: '첫번째 페이지 입니다.',
 				});
 				return false;
-			} else if (page_range.value[0] === 1) {
-				notify({
-					type: 'warn',
-					title: '경고',
-					text: '존재하지 않습니다',
-				});
-				return false;
 			}
+
 			page_number.value--;
-			const new_range = return_new_range();
-			page_range.value = new_range;
+			if (page_number.value % props.pagingrange === 0) {
+				const new_range = return_prev_range();
+				page_range.value = new_range;
+			}
 			movePaging();
 		};
 
 		const nextPaging = () => {
-			if (totalpaging.value <= page_number.value || totalpaging.value === page_range.value[page_range.value.length - 1]) {
+			if (totalpaging.value <= page_number.value) {
 				notify({
 					type: 'warn',
 					title: '경고',
@@ -81,8 +77,11 @@ export default {
 				return false;
 			}
 			page_number.value++;
-			const new_range = return_new_range();
-			page_range.value = new_range;
+			if (page_number.value % props.pagingrange === 1) {
+				const new_range = return_next_range();
+				page_range.value = new_range;
+			}
+
 			movePaging();
 		};
 
@@ -92,7 +91,7 @@ export default {
 
 		onMounted(() => {
 			totalpaging.value = Math.ceil(props.totaldata / props.pagingdata);
-			page_range.value = return_new_range();
+			page_range.value = return_next_range();
 		});
 
 		onUpdated(() => {
@@ -103,13 +102,18 @@ export default {
 			}
 
 			if (page_range.value.length === 0) {
-				page_range.value = return_new_range();
+				page_range.value = return_next_range();
 			}
 		});
 
-		const return_new_range = () => {
+		const return_next_range = () => {
 			const new_range = Array.from(new Array(props.pagingrange), (_, i) => page_number.value + i);
 			return new_range.filter(item => item <= totalpaging.value);
+		};
+
+		const return_prev_range = () => {
+			const new_range = Array.from(new Array(props.pagingrange), (_, i) => page_number.value - i);
+			return new_range.sort((a, b) => a - b);
 		};
 
 		return {
