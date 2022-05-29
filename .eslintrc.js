@@ -10,6 +10,7 @@ module.exports = {
 		'vue/no-v-for-template-key': 'off',
 		'no-undef': 'off',
 		'no-unused-vars': 'off',
+		'vue/no-unused-vars': 'off',
 		'prettier/prettier': [
 			'error',
 			{
