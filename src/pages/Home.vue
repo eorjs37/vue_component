@@ -75,6 +75,17 @@
 		<div class="mt-30">
 			<QuillEditor theme="snow" />
 		</div>
+
+		<h1 class="title mt-30">Slot</h1>
+		<div class="mt-30">
+			<Slot>
+				<template #header>
+					<th>No</th>
+					<th>상품명</th>
+					<th>가격</th>
+				</template>
+			</Slot>
+		</div>
 	</div>
 
 	<notifications position="bottom center" />
@@ -92,7 +103,7 @@ import Datepicker from 'vue3-datepicker';
 //vue-quill(editor)
 import { QuillEditor } from '@vueup/vue-quill';
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
-
+import Slot from '@/components/Slot.vue';
 //router
 import { useRouter } from 'vue-router';
 export default {
@@ -101,6 +112,7 @@ export default {
 	components: {
 		Datepicker,
 		QuillEditor,
+		Slot,
 	},
 	setup() {
 		const tableHead = ref(['company', 'Contact', 'Country']);
