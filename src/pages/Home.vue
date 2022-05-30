@@ -78,11 +78,17 @@
 
 		<h1 class="title mt-30">Slot</h1>
 		<div class="mt-30">
-			<Slot>
+			<Slot :tlist="tableBody">
 				<template #header>
 					<th>No</th>
 					<th>상품명</th>
 					<th>가격</th>
+				</template>
+
+				<template #list="{ row }">
+					<td>{{ row.item1 }}</td>
+					<td>{{ row.item2 }}</td>
+					<td>{{ row.item3 }}</td>
 				</template>
 			</Slot>
 		</div>
