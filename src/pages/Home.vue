@@ -34,40 +34,40 @@
 		<!-- Button Component -->
 		<h1 class="title mt-30">Button Component</h1>
 		<div class="component">
-			<Button :btntype="'green'" @onLoading="changeLoading1()">
+			<Buttons :btntype="'green'" @onLoading="changeLoading1()">
 				<template #buttonName v-if="!btnIsLoading1"> <font-awesome-icon icon="plus" /> 등록 </template>
 				<template #buttonName v-else> <font-awesome-icon icon="spinner" spin /> </template>
-			</Button>
+			</Buttons>
 
-			<Button class="ml-15" :btntype="'red'" @onLoading="changeLoading2()">
+			<Buttons class="ml-15" :btntype="'red'" @onLoading="changeLoading2()">
 				<template #buttonName v-if="!btnIsLoading2"> <font-awesome-icon icon="minus" /> 삭제 </template>
 				<template #buttonName v-else>
 					<font-awesome-icon icon="spinner" spin />
 				</template>
-			</Button>
+			</Buttons>
 
-			<Button class="ml-15" :btntype="'blue'" @onLoading="changeLoading3()">
+			<Buttons class="ml-15" :btntype="'blue'" @onLoading="changeLoading3()">
 				<template #buttonName v-if="!btnIsLoading3"> <font-awesome-icon icon="list" /> 목록 </template>
 				<template #buttonName v-else>
 					<font-awesome-icon icon="spinner" spin />
 				</template>
-			</Button>
+			</Buttons>
 		</div>
 
 		<!-- Modal Component -->
 		<h1 class="title mt-30">Modal Component</h1>
 		<div class="component">
-			<Button :btntype="'green'" @click="isModal400 = true">
+			<Buttons :btntype="'green'" @click="isModal400 = true">
 				<template #buttonName> <font-awesome-icon icon="window-maximize" /> Modal400 </template>
-			</Button>
+			</Buttons>
 
-			<Button class="ml-15" :btntype="'green'" @click="isModal800 = true">
+			<Buttons class="ml-15" :btntype="'green'" @click="isModal800 = true">
 				<template #buttonName> <font-awesome-icon icon="window-maximize" /> Modal800 </template>
-			</Button>
+			</Buttons>
 
-			<Button class="ml-15" :btntype="'green'" @click="isModal1200 = true">
+			<Buttons class="ml-15" :btntype="'green'" @click="isModal1200 = true">
 				<template #buttonName> <font-awesome-icon icon="window-maximize" /> Modal1200 </template>
-			</Button>
+			</Buttons>
 		</div>
 
 		<!-- Modal Component -->
@@ -76,16 +76,9 @@
 			<QuillEditor theme="snow" />
 		</div>
 
-		<h1 class="title mt-30">Slot</h1>
-		<div class="mt-30">
-			<Slot>
-				<template #header>
-					<th>No</th>
-					<th>상품명</th>
-					<th>가격</th>
-				</template>
-			</Slot>
-		</div>
+		<!-- Modal Component -->
+		<h1 class="title mt-30">Paging2 Component</h1>
+		<Paging2 :totaldata="paging2.pTotalData" :pagingdata="paging2.pPagingdata" :pagingrange="paging2.pPagingrange"></Paging2>
 	</div>
 
 	<notifications position="bottom center" />
@@ -95,7 +88,7 @@
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, reactive } from 'vue';
 import mock from '@/assets/mock/table';
 import { notify } from '@kyvg/vue3-notification';
 import Datepicker from 'vue3-datepicker';
@@ -103,7 +96,6 @@ import Datepicker from 'vue3-datepicker';
 //vue-quill(editor)
 import { QuillEditor } from '@vueup/vue-quill';
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
-import Slot from '@/components/Slot.vue';
 //router
 import { useRouter } from 'vue-router';
 export default {
@@ -112,7 +104,6 @@ export default {
 	components: {
 		Datepicker,
 		QuillEditor,
-		Slot,
 	},
 	setup() {
 		const tableHead = ref(['company', 'Contact', 'Country']);
@@ -179,6 +170,12 @@ export default {
 			isModal1200.value = false;
 		};
 
+		const paging2 = reactive({
+			pTotalData: 51,
+			pPagingdata: 5,
+			pPagingrange: 5,
+		});
+
 		onMounted(() => {
 			pagingNext(1);
 		});
@@ -202,6 +199,7 @@ export default {
 			exitModal400,
 			exitModal800,
 			exitModal1200,
+			paging2,
 		};
 	},
 };

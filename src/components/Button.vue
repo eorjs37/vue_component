@@ -1,5 +1,5 @@
 <template>
-	<button class="button" :class="btntype" @click="btnClick()">
+	<button class="button-group" :class="btntype" @click="btnClick()">
 		<slot name="buttonName"> 버튼명을입력하세요 </slot>
 	</button>
 </template>
@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.button {
+.button-group {
 	background-color: #fff;
 	border: none;
 	color: #000;
