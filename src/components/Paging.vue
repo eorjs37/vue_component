@@ -1,10 +1,12 @@
 <template>
 	<div class="page">
 		<div class="pagination">
-			<a @click="prevPaging">&laquo;</a>
-			<a
+			<font-awesome-icon class="arrow" icon="angle-left" @click="prevPaging" />
+
+			<span
 				v-for="item in page_range"
 				:key="'paging' + item"
+				class="number"
 				:class="page_number === item ? 'active' : ''"
 				@click="
 					page_number = item;
@@ -12,8 +14,8 @@
 				"
 			>
 				{{ item }}
-			</a>
-			<a @click="nextPaging">&raquo;</a>
+			</span>
+			<font-awesome-icon class="arrow" icon="angle-right" @click="nextPaging" />
 		</div>
 	</div>
 </template>
@@ -128,7 +130,7 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .page {
 	position: relative;
 	margin-top: 25px;
@@ -138,9 +140,27 @@ export default {
 	position: absolute;
 	left: 50%;
 	transform: translateX(-50%);
+
+	.number {
+		color: black;
+		cursor: pointer;
+		padding: 8px 16px;
+	}
+
+	.active {
+		background-color: #4caf50;
+		color: #fff;
+	}
 }
 
-.pagination a {
+.arrow {
+	padding: 0 10px;
+	cursor: pointer;
+	display: inline-block;
+	line-height: 32px;
+}
+/* 
+.pagination span {
 	color: black;
 	float: left;
 	padding: 8px 16px;
@@ -148,12 +168,12 @@ export default {
 	cursor: pointer;
 }
 
-.pagination a.active {
+.pagination span.active {
 	background-color: #4caf50;
 	color: white;
 }
 
-.pagination a:hover:not(.active) {
+.pagination span:hover:not(.active) {
 	background-color: #ddd;
-}
+} */
 </style>
