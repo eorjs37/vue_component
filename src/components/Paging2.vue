@@ -1,7 +1,7 @@
 <template>
 	<div class="paging2">
 		<div class="pagination2">
-			<font-awesome-icon class="arrow" icon="angles-left" />
+			<font-awesome-icon class="arrow" icon="angles-left" @click="paging2.prev()" />
 			<span
 				v-for="(item, index) in paging2.pagingArray"
 				:key="'paging2' + index"
@@ -11,13 +11,14 @@
 			>
 				{{ item }}
 			</span>
-			<font-awesome-icon class="arrow" icon="angles-right" />
+			<font-awesome-icon class="arrow" icon="angles-right" @click="paging2.next()" />
 		</div>
 	</div>
 </template>
 
 <script>
-import { onMounted, reactive } from '@vue/runtime-core';
+import { onMounted, reactive } from 'vue';
+import { notify } from '@kyvg/vue3-notification';
 export default {
 	name: 'Paging2',
 	props: {
@@ -42,15 +43,39 @@ export default {
 	},
 	setup(props) {
 		const paging2 = reactive({
+			totalPaging: 1,
 			pagingArray: [],
 			currentPageNumber: 1,
+			prev: () => {
+				if (paging2.currentPageNumber === 1) {
+					notify({
+						type: 'warn',
+						title: '경고',
+						text: '첫번째 페이지 입니다.',
+					});
+					return false;
+				}
+
+				paging2.currentPageNumber--;
+			},
+			next: () => {
+				if (paging2.currentPageNumber >= paging2.pagingArray[paging2.pagingArray.length - 1]) {
+					notify({
+						type: 'warn',
+						title: '경고',
+						text: '마지막페이지 입니다.',
+					});
+					return false;
+				}
+				paging2.currentPageNumber++;
+			},
 		});
 		onMounted(() => {
 			//전체 페이징 구하기
-			const totalPaging = Math.ceil(props.totaldata / props.pagingrange);
+			paging2.totalPaging = Math.ceil(props.totaldata / props.pagingrange);
 
 			//페이지 Array 만들기
-			const pageArray = Array.from(new Array(totalPaging), (_, index) => 1 + index);
+			const pageArray = Array.from(new Array(paging2.totalPaging), (_, index) => 1 + index);
 
 			// 현재페이지로부터 + 보여주고싶은 페이징단위-1
 			const range = paging2.currentPageNumber + (props.pagingrange - 1);
