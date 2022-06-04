@@ -83,6 +83,7 @@ export default {
 .modal_head {
 	width: 100%;
 	font-size: 30px;
+	padding: 10px;
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
@@ -103,7 +104,6 @@ export default {
 
 		.title_box {
 			text-align: center;
-			margin-bottom: 18px;
 			font-weight: bold;
 		}
 

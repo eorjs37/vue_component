@@ -57,30 +57,4 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-.fade-enter-active {
-	animation: fadein 0.5s;
-}
-
-.fade-leave-active {
-	animation: fadeout 0.5s;
-}
-
-@keyframes fadein {
-	from {
-		opacity: 0;
-	}
-	to {
-		opacity: 1;
-	}
-}
-
-@keyframes fadeout {
-	from {
-		opacity: 1;
-	}
-	to {
-		opacity: 0;
-	}
-}
-</style>
+<style lang="scss" scoped></style>

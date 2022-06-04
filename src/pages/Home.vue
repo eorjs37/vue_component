@@ -68,6 +68,10 @@
 			<Buttons class="ml-15" :btntype="'green'" @click="isModal1200 = true">
 				<template #buttonName> <font-awesome-icon icon="window-maximize" /> Modal1200 </template>
 			</Buttons>
+
+			<Buttons class="ml-15" :btntype="'green'" @click="studentListModal = true">
+				<template #buttonName> <font-awesome-icon icon="window-maximize" /> StudentList </template>
+			</Buttons>
 		</div>
 
 		<!-- Modal Component -->
@@ -85,6 +89,7 @@
 	<Modal400 :ismodal="isModal400" @exitmodal="exitModal400()"></Modal400>
 	<Modal800 :ismodal="isModal800" @exitmodal="exitModal800()"></Modal800>
 	<Modal1200 :ismodal="isModal1200" @exitmodal="exitModal1200()"></Modal1200>
+	<StudentListModal :ismodal="studentListModal" @exitmodal="exitStudentListModal()"></StudentListModal>
 </template>
 
 <script>
@@ -116,6 +121,7 @@ export default {
 		const isModal400 = ref(false);
 		const isModal800 = ref(false);
 		const isModal1200 = ref(false);
+		const studentListModal = ref(false);
 
 		const date = ref(new Date());
 		const router = useRouter();
@@ -170,6 +176,10 @@ export default {
 			isModal1200.value = false;
 		};
 
+		const exitStudentListModal = () => {
+			studentListModal.value = false;
+		};
+
 		const paging2 = reactive({
 			pTotalData: 51,
 			pPagingdata: 5,
@@ -202,6 +212,7 @@ export default {
 			isModal400,
 			isModal800,
 			isModal1200,
+			studentListModal,
 			date,
 			pagingNext,
 			returnFile,
@@ -211,6 +222,7 @@ export default {
 			exitModal400,
 			exitModal800,
 			exitModal1200,
+			exitStudentListModal,
 			paging2,
 			computeds,
 			methods,
