@@ -112,6 +112,7 @@ export default {
 		color: black;
 		cursor: pointer;
 		padding: 8px 16px;
+		user-select: none;
 	}
 
 	.active {

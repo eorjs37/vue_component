@@ -7,6 +7,9 @@ module.exports = {
 		resolve: {
 			alias: {
 				'@': path.join(__dirname, 'src/'),
+				utils: path.join(__dirname, 'src/utils/'),
+				router: path.join(__dirname, 'src/router'),
+				plugins: path.join(__dirname, 'src/plugins'),
 			},
 		},
 	},

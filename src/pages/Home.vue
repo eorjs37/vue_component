@@ -12,7 +12,7 @@
 			<template #list="{ row }">
 				<td>{{ row.item1 }}</td>
 				<td>{{ row.item2 }}</td>
-				<td>{{ row.item3 }}</td>
+				<td>{{ $filters.currencyUSD(row.item3) }}</td>
 			</template>
 		</Table>
 		<!-- Paging Component -->
@@ -88,7 +88,7 @@
 </template>
 
 <script>
-import { ref, onMounted, reactive } from 'vue';
+import { ref, onMounted, reactive, computed } from 'vue';
 import mock from '@/assets/mock/table';
 import { notify } from '@kyvg/vue3-notification';
 import Datepicker from 'vue3-datepicker';
@@ -176,6 +176,18 @@ export default {
 			pPagingrange: 5,
 		});
 
+		const computeds = computed(() => {
+			return data => {
+				console.log('computed');
+				return `$${data}`;
+			};
+		});
+
+		const methods = data => {
+			console.log('methods');
+			return `$${data}`;
+		};
+
 		onMounted(() => {
 			pagingNext(1);
 		});
@@ -200,6 +212,8 @@ export default {
 			exitModal800,
 			exitModal1200,
 			paging2,
+			computeds,
+			methods,
 		};
 	},
 };

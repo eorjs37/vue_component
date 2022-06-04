@@ -3,47 +3,13 @@ import App from './App.vue';
 import Notifications from '@kyvg/vue3-notification';
 
 //fort-awesome
-import { library } from '@fortawesome/fontawesome-svg-core';
-import {
-	faUserSecret,
-	faSpinner,
-	faPlus,
-	faMinus,
-	faList,
-	faWindowMaximize,
-	faXmark,
-	faHome,
-	faChalkboard,
-	faChartBar,
-	faRecycle,
-	faMagnifyingGlass,
-	faAngleLeft,
-	faAngleRight,
-	faAnglesLeft,
-	faAnglesRight,
-} from '@fortawesome/free-solid-svg-icons';
+import 'plugins/fontawesome.js';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
-library.add(
-	faUserSecret,
-	faSpinner,
-	faPlus,
-	faMinus,
-	faList,
-	faWindowMaximize,
-	faXmark,
-	faHome,
-	faChalkboard,
-	faChartBar,
-	faRecycle,
-	faMagnifyingGlass,
-	faAngleLeft,
-	faAngleRight,
-	faAnglesLeft,
-	faAnglesRight,
-);
 
 //router
-import { router } from './router/router';
+import { router } from 'router/router';
+
+import moudles from 'utils/filters';
 
 //global component
 import Paging from '@/components/Paging.vue';
@@ -58,7 +24,12 @@ import Paging2 from '@/components/Paging2.vue';
 //date-picker
 const app = createApp(App);
 app.use(router);
+
+//font-awesome-icon
 app.component('font-awesome-icon', FontAwesomeIcon);
+
+//global filter
+app.config.globalProperties.$filters = moudles;
 
 //global component
 app.component('Paging', Paging);
