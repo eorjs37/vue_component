@@ -149,7 +149,7 @@ export default {
 	}
 
 	.active {
-		background-color: #4caf50;
+		background-color: #264db5;
 		color: #fff;
 	}
 }
@@ -160,21 +160,4 @@ export default {
 	display: inline-block;
 	line-height: 32px;
 }
-/* 
-.pagination span {
-	color: black;
-	float: left;
-	padding: 8px 16px;
-	text-decoration: none;
-	cursor: pointer;
-}
-
-.pagination span.active {
-	background-color: #4caf50;
-	color: white;
-}
-
-.pagination span:hover:not(.active) {
-	background-color: #ddd;
-} */
 </style>

@@ -11,6 +11,7 @@ module.exports = {
 		'no-undef': 'off',
 		'no-unused-vars': 'off',
 		'vue/no-unused-vars': 'off',
+		'vue/no-mutating-props': 'off',
 		'prettier/prettier': [
 			'error',
 			{

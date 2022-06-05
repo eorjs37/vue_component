@@ -2,6 +2,10 @@
 	<table>
 		<thead>
 			<tr>
+				<th v-if="props.isCheckBox">
+					<input type="checkbox" class="checkbox" v-model="allChecked" :class="{ active: allChecked }" />
+					<label for="cb1" @click="allCheck()"></label>
+				</th>
 				<slot name="header">
 					<th colspan="99">헤더에 데이터를 넣어주세요</th>
 				</slot>
@@ -10,6 +14,10 @@
 		<tbody>
 			<template v-for="(item, index) in tlist" :key="'item' + index">
 				<tr>
+					<td v-if="props.isCheckBox">
+						<input type="checkbox" class="checkbox" v-model="item.isCheck" :class="{ active: item.isCheck }" />
+						<label for="cb1" @click="item.isCheck = !item.isCheck"></label>
+					</td>
 					<slot name="list" :row="item"></slot>
 				</tr>
 			</template>
@@ -20,8 +28,14 @@
 	</table>
 </template>
 <script>
+import { ref } from 'vue';
 export default {
 	props: {
+		isCheckBox: {
+			type: Boolean,
+			required: false,
+			default: false,
+		},
 		tlist: {
 			type: Array,
 			default() {
@@ -29,7 +43,56 @@ export default {
 			},
 		},
 	},
+	setup(props) {
+		const allChecked = ref(false);
+		/*
+		 * @description: 전체 체크
+		 */
+		const allCheck = () => {
+			allChecked.value = !allChecked.value;
+			for (let item in props.tlist) {
+				console.log();
+				props.tlist[item].isCheck = allChecked.value;
+			}
+		};
+
+		return {
+			props,
+			allChecked,
+			allCheck,
+		};
+	},
 };
 </script>
 
-<style></style>
+<style lang="scss">
+input.checkbox {
+	position: relative;
+	display: none;
+}
+input.checkbox + label {
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	border: 1px solid #eee;
+	border-radius: 3px;
+	cursor: pointer;
+	position: relative;
+}
+
+input.checkbox.active + label::after {
+	content: '✔';
+	font-size: 12px;
+	width: 12px;
+	height: 12px;
+	text-align: center;
+	position: absolute;
+	font-weight: 700;
+	color: #fff;
+	background-color: #274cb1;
+	border-radius: 3px;
+	left: 0;
+	top: 0;
+	padding: 3px;
+}
+</style>

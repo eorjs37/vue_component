@@ -20,7 +20,7 @@
 				</div>
 
 				<div class="mt-30">
-					<Table :tlist="list">
+					<Table :tlist="list" :isCheckBox="true">
 						<template #header>
 							<th class="w_20per">Name <font-awesome-icon icon="caret-down" class="pointer" /></th>
 							<th class="w_80per">createDate <font-awesome-icon icon="caret-down" class="pointer" /></th>
@@ -55,7 +55,11 @@ export default {
 		Modal,
 	},
 	setup(_, context) {
-		const list = reactive([{ name: '최대건', createDate: '2022-01-01' }]);
+		const list = reactive([
+			{ isCheck: false, name: '최대건', createDate: '2022-01-01' },
+			{ isCheck: false, name: '최대건', createDate: '2022-02-01' },
+			{ isCheck: false, name: '최대건', createDate: '2022-03-01' },
+		]);
 		const totalCount = ref(26);
 		const exitmodal = () => {
 			context.emit('exitmodal');
