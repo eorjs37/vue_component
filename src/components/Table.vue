@@ -16,7 +16,7 @@
 				<tr>
 					<td v-if="props.isCheckBox">
 						<input type="checkbox" class="checkbox" v-model="item.isCheck" :class="{ active: item.isCheck }" />
-						<label for="cb1" @click="item.isCheck = !item.isCheck"></label>
+						<label for="cb1" @click="selectedCheckBox(item)"></label>
 					</td>
 					<slot name="list" :row="item"></slot>
 				</tr>
@@ -28,7 +28,7 @@
 	</table>
 </template>
 <script>
-import { ref } from 'vue';
+import { reactive, ref } from 'vue';
 export default {
 	props: {
 		isCheckBox: {
@@ -45,21 +45,36 @@ export default {
 	},
 	setup(props) {
 		const allChecked = ref(false);
+		const selectItem = reactive([]);
 		/*
 		 * @description: 전체 체크
 		 */
 		const allCheck = () => {
 			allChecked.value = !allChecked.value;
 			for (let item in props.tlist) {
-				console.log();
 				props.tlist[item].isCheck = allChecked.value;
+			}
+		};
+
+		const selectedCheckBox = item => {
+			item.isCheck = !item.isCheck;
+
+			if (!item.isCheck) {
+				const findIdx = selectItem.findIndex(findItem => findItem.id === item.id);
+				if (findIdx > -1) {
+					selectItem.splice(findIdx, 1);
+				}
+			} else {
+				selectItem.push(item);
 			}
 		};
 
 		return {
 			props,
 			allChecked,
+			selectItem,
 			allCheck,
+			selectedCheckBox,
 		};
 	},
 };
@@ -78,6 +93,7 @@ input.checkbox + label {
 	border-radius: 3px;
 	cursor: pointer;
 	position: relative;
+	background-color: #fff;
 }
 
 input.checkbox.active + label::after {

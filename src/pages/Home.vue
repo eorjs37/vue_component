@@ -1,8 +1,13 @@
 <template>
 	<div>
 		<h1 class="title">Table Component</h1>
+		<div class="right-box">
+			<Buttons :btntype="'blue'">
+				<template #buttonName> <font-awesome-icon icon="plus" /> 추가 </template>
+			</Buttons>
+		</div>
 		<!-- Table Component -->
-		<Table :tlist="tableBody">
+		<Table :tlist="tableBody" :isCheckBox="true">
 			<template #header>
 				<th class="w_20per">Company</th>
 				<th class="w_50per">Name</th>
@@ -101,8 +106,6 @@ import Datepicker from 'vue3-datepicker';
 //vue-quill(editor)
 import { QuillEditor } from '@vueup/vue-quill';
 import '@vueup/vue-quill/dist/vue-quill.snow.css';
-//router
-import { useRouter } from 'vue-router';
 export default {
 	name: 'App',
 	inheritAttrs: true,
@@ -124,7 +127,6 @@ export default {
 		const studentListModal = ref(false);
 
 		const date = ref(new Date());
-		const router = useRouter();
 
 		const pagingNext = pageNumger => {
 			//axios를 태우시오
@@ -252,5 +254,10 @@ export default {
 
 .swiper-container-free-mode > .swiper-wrapper {
 	transition-timing-function: linear;
+}
+
+.right-box {
+	display: flex;
+	justify-content: flex-end;
 }
 </style>
