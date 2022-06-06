@@ -17,6 +17,12 @@
 							<font-awesome-icon icon="magnifying-glass" />
 						</div>
 					</div>
+
+					<div class="box">
+						<Buttons :btntype="'blue'" @click="returnStudent()">
+							<template #buttonName> 수강생추가 </template>
+						</Buttons>
+					</div>
 				</div>
 
 				<div class="mt-30">
@@ -42,6 +48,7 @@
 <script>
 import Modal from '@/components/Modal/Modal.vue';
 import { ref, reactive } from 'vue';
+import { notify } from '@kyvg/vue3-notification';
 export default {
 	emits: ['exitmodal'],
 	props: {
@@ -61,9 +68,13 @@ export default {
 			{ isCheck: false, name: '최대건', createDate: '2022-03-01' },
 		]);
 		const totalCount = ref(26);
+		//수강생 추가 리스트
+		const addStudentList = ref([]);
+
 		const exitmodal = () => {
 			context.emit('exitmodal');
 		};
+
 		/**
 		 * @description 외부 클릭 이벤트
 		 */
@@ -74,14 +85,38 @@ export default {
 			}
 		};
 
+		/**
+		 * @description 학생 추가
+		 */
+		const returnStudent = () => {
+			notify({
+				type: 'warn',
+				title: '수강생추가',
+				text: '수강생을 추가해주세요.',
+			});
+		};
+
+		/**
+		 * @description : 페이징
+		 */
 		const pagingNext = () => {};
+
+		/**
+		 * @description 학생 추가
+		 */
+		const addStudent = item => {
+			console.log(item);
+		};
 
 		return {
 			list,
 			totalCount,
+			addStudentList,
 			exitmodal,
 			outslideClick,
+			returnStudent,
 			pagingNext,
+			addStudent,
 		};
 	},
 };
@@ -111,5 +146,10 @@ export default {
 		color: #eee;
 		cursor: pointer;
 	}
+}
+
+.box {
+	display: flex;
+	justify-content: flex-end;
 }
 </style>

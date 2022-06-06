@@ -21,7 +21,6 @@
 
 <script>
 import Modal from '@/components/Modal/Modal.vue';
-import { onMounted } from '@vue/runtime-core';
 export default {
 	emits: ['exitmodal'],
 	props: {
