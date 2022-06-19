@@ -36,7 +36,7 @@ export default {
 		pagingdata: {
 			type: Number,
 			required: true,
-			default: 5,
+			default: 50,
 		},
 		//보여주고 싶은 페이징 단위
 		pagingrange: {

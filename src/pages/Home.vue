@@ -1,25 +1,21 @@
 <template>
 	<div>
-		<h1 class="title">Table Component</h1>
+		<h1 class="title">Table2 Component</h1>
 		<div class="right-box">
 			<Buttons :btntype="'blue'">
 				<template #buttonName> <font-awesome-icon icon="plus" /> 추가 </template>
 			</Buttons>
 		</div>
-		<!-- Table Component -->
-		<Table :tlist="tableBody" :isCheckBox="true">
-			<template #header>
-				<th class="w_20per">Company</th>
-				<th class="w_50per">Name</th>
-				<th class="w_30per">Contury</th>
-			</template>
 
-			<template #list="{ row }">
-				<td>{{ row.item1 }}</td>
-				<td>{{ row.item2 }}</td>
-				<td>{{ $filters.currencyUSD(row.item3) }}</td>
+		<!-- TableV2 Component -->
+		<TableV2 :tabledata="tableData">
+			<template #Company="{ row }">
+				<span @click="clickEvent(row)">
+					{{ row.Company }}
+				</span>
 			</template>
-		</Table>
+		</TableV2>
+
 		<!-- Paging Component -->
 		<Paging :totaldata="totalCount" :pagingdata="5" :pagingrange="5" @onPaging="pagingNext"></Paging>
 
@@ -128,12 +124,29 @@ export default {
 
 		const date = ref(new Date());
 
+		const tableData = ref({
+			//'Company', 'Name', 'Contury'
+			head: [
+				{ headkey: 'Company', colname: '회사명' },
+				{ headkey: 'Name', colname: '이름' },
+				{ headkey: 'Contury', colname: '국가' },
+			],
+			body: [],
+		});
+
+		const paging2 = reactive({
+			pTotalData: 51,
+			pPagingdata: 5,
+			pPagingrange: 5,
+		});
+
 		const pagingNext = pageNumger => {
 			//axios를 태우시오
 			const page = pageNumger.value ? pageNumger.value : pageNumger;
 			const { data, totalData } = mock;
 			totalCount.value = totalData;
 			tableBody.value = data[page - 1];
+			tableData.value.body = data[page - 1];
 		};
 
 		const returnFile = file => {
@@ -182,11 +195,10 @@ export default {
 			studentListModal.value = false;
 		};
 
-		const paging2 = reactive({
-			pTotalData: 51,
-			pPagingdata: 5,
-			pPagingrange: 5,
-		});
+		const clickEvent = row => {
+			console.log(row);
+			alert('click ' + row.Company);
+		};
 
 		const computeds = computed(() => {
 			return data => {
@@ -194,11 +206,6 @@ export default {
 				return `$${data}`;
 			};
 		});
-
-		const methods = data => {
-			console.log('methods');
-			return `$${data}`;
-		};
 
 		onMounted(() => {
 			pagingNext(1);
@@ -216,6 +223,7 @@ export default {
 			isModal1200,
 			studentListModal,
 			date,
+			tableData,
 			pagingNext,
 			returnFile,
 			changeLoading1,
@@ -226,8 +234,8 @@ export default {
 			exitModal1200,
 			exitStudentListModal,
 			paging2,
+			clickEvent,
 			computeds,
-			methods,
 		};
 	},
 };

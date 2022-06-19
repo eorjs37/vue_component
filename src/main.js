@@ -14,6 +14,7 @@ import moudles from 'utils/filters';
 //global component
 import Paging from '@/components/Paging.vue';
 import Table from '@/components/Table.vue';
+import TableV2 from '@/components/TableV2.vue';
 import Image from '@/components/Image.vue';
 import Button from '@/components/Button.vue';
 import Modal400 from '@/components/Modal/Modal400.vue';
@@ -35,6 +36,7 @@ app.config.globalProperties.$filters = moudles;
 //global component
 app.component('Paging', Paging);
 app.component('Table', Table);
+app.component('TableV2', TableV2);
 app.component('Image', Image);
 app.component('Buttons', Button);
 app.component('Modal400', Modal400);

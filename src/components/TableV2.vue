@@ -1,27 +1,36 @@
 <template>
 	<table>
+		<!-- ##################### thead ##################### -->
 		<thead>
 			<tr>
 				<th v-if="props.isCheckBox">
 					<input type="checkbox" class="checkbox" v-model="allChecked" :class="{ active: allChecked }" />
 					<label for="cb1" @click="allCheck()"></label>
 				</th>
-				<slot name="header">
-					<th colspan="99">헤더에 데이터를 넣어주세요</th>
+				<slot name="header" v-if="tabledata.head.length > 0">
+					<th v-for="(item, index) in tabledata.head" :key="'head' + index">
+						{{ item.colname }}
+					</th>
 				</slot>
+				<th v-else colspan="99">헤더에 데이터를 넣어주세요</th>
 			</tr>
 		</thead>
+		<!--##################### tbody #####################-->
 		<tbody>
-			<template v-for="(item, index) in tlist" :key="'item' + index">
+			<template v-for="(rowItem, index) in tabledata.body" :key="'rowItem' + index">
 				<tr>
 					<td v-if="props.isCheckBox">
-						<input type="checkbox" class="checkbox" v-model="item.isCheck" :class="{ active: item.isCheck }" />
-						<label for="cb1" @click="selectedCheckBox(item)"></label>
+						<input type="checkbox" class="checkbox" v-model="rowItem.isCheck" :class="{ active: rowItem.isCheck }" />
+						<label for="cb1" @click="selectedCheckBox(rowItem)"></label>
 					</td>
-					<slot name="list" :row="item"></slot>
+					<td v-for="(headitem, index) in tabledata.head" :key="'head' + index">
+						<slot :name="headitem.headkey" :row="rowItem">
+							{{ rowItem[headitem.headkey] }}
+						</slot>
+					</td>
 				</tr>
 			</template>
-			<tr v-if="tlist.length === 0">
+			<tr v-if="tabledata.body.length === 0">
 				<td colspan="99">검색결과가 없습니다</td>
 			</tr>
 		</tbody>
@@ -35,12 +44,6 @@ export default {
 			type: Boolean,
 			required: false,
 			default: true,
-		},
-		tlist: {
-			type: Array,
-			default() {
-				return [];
-			},
 		},
 		tabledata: {
 			type: Object,
@@ -61,8 +64,8 @@ export default {
 		 */
 		const allCheck = () => {
 			allChecked.value = !allChecked.value;
-			for (let item in props.tlist) {
-				props.tlist[item].isCheck = allChecked.value;
+			for (let item in props.tabledata.body) {
+				props.tabledata.body[item].isCheck = allChecked.value;
 			}
 		};
 
