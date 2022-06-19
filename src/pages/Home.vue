@@ -8,11 +8,15 @@
 		</div>
 
 		<!-- TableV2 Component -->
-		<TableV2 :tabledata="tableData">
+		<TableV2 :tabledata="tableData" @rowselected="onRowSelected">
+			<!-- ############## Head Custom  ############## -->
+			<template #HeadCompany>
+				<th class="col1">111</th>
+			</template>
+
+			<!-- ############## Body Custom ############## -->
 			<template #Company="{ row }">
-				<span @click="clickEvent(row)">
-					{{ row.Company }}
-				</span>
+				<span @click="clickEvent(row)"> {{ row.Company }}111 </span>
 			</template>
 		</TableV2>
 
@@ -125,7 +129,6 @@ export default {
 		const date = ref(new Date());
 
 		const tableData = ref({
-			//'Company', 'Name', 'Contury'
 			head: [
 				{ headkey: 'Company', colname: '회사명' },
 				{ headkey: 'Name', colname: '이름' },
@@ -197,7 +200,10 @@ export default {
 
 		const clickEvent = row => {
 			console.log(row);
-			alert('click ' + row.Company);
+		};
+
+		const onRowSelected = item => {
+			console.log('item : ', item);
 		};
 
 		const computeds = computed(() => {
@@ -235,6 +241,7 @@ export default {
 			exitStudentListModal,
 			paging2,
 			clickEvent,
+			onRowSelected,
 			computeds,
 		};
 	},
@@ -267,5 +274,9 @@ export default {
 .right-box {
 	display: flex;
 	justify-content: flex-end;
+}
+
+.col1 {
+	width: 25%;
 }
 </style>

@@ -7,12 +7,14 @@
 					<input type="checkbox" class="checkbox" v-model="allChecked" :class="{ active: allChecked }" />
 					<label for="cb1" @click="allCheck()"></label>
 				</th>
-				<slot name="header" v-if="tabledata.head.length > 0">
-					<th v-for="(item, index) in tabledata.head" :key="'head' + index">
-						{{ item.colname }}
-					</th>
-				</slot>
-				<th v-else colspan="99">헤더에 데이터를 넣어주세요</th>
+
+				<template v-for="(item, index) in tabledata.head" :key="'head' + index">
+					<slot :name="'Head' + item.headkey">
+						<th>
+							{{ item.colname }}
+						</th>
+					</slot>
+				</template>
 			</tr>
 		</thead>
 		<!--##################### tbody #####################-->
@@ -23,7 +25,7 @@
 						<input type="checkbox" class="checkbox" v-model="rowItem.isCheck" :class="{ active: rowItem.isCheck }" />
 						<label for="cb1" @click="selectedCheckBox(rowItem)"></label>
 					</td>
-					<td v-for="(headitem, index) in tabledata.head" :key="'head' + index">
+					<td v-for="(headitem, index) in tabledata.head" :key="'head' + index" @click="rowSelected(rowItem)">
 						<slot :name="headitem.headkey" :row="rowItem">
 							{{ rowItem[headitem.headkey] }}
 						</slot>
@@ -56,7 +58,8 @@ export default {
 			},
 		},
 	},
-	setup(props) {
+	emits: ['rowselected'],
+	setup(props, context) {
 		const allChecked = ref(false);
 		const selectItem = reactive([]);
 		/*
@@ -82,12 +85,17 @@ export default {
 			}
 		};
 
+		const rowSelected = item => {
+			context.emit('rowselected', item);
+		};
+
 		return {
 			props,
 			allChecked,
 			selectItem,
 			allCheck,
 			selectedCheckBox,
+			rowSelected,
 		};
 	},
 };
