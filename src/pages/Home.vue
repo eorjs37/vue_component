@@ -21,7 +21,7 @@
 		</TableV2>
 
 		<!-- Paging Component -->
-		<Paging :totaldata="totalCount" :pagingdata="5" :pagingrange="5" @onPaging="pagingNext"></Paging>
+		<Paging :totaldata="11" :pagingdata="5" :pagingrange="5" @onPaging="pagingNext"></Paging>
 
 		<!-- Date Picker -->
 		<h1 class="title mt-30">Date Picker</h1>

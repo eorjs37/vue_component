@@ -21,7 +21,7 @@
 </template>
 
 <script>
-import { ref, onMounted, onUpdated, computed } from 'vue';
+import { ref, onMounted, watch } from 'vue';
 import { notify } from '@kyvg/vue3-notification';
 export default {
 	name: 'Paging',
@@ -92,20 +92,9 @@ export default {
 		};
 
 		onMounted(() => {
+			console.log('Paging onMounted');
 			totalpaging.value = Math.ceil(props.totaldata / props.pagingdata);
 			page_range.value = return_next_range();
-		});
-
-		onUpdated(() => {
-			totalpaging.value = Math.ceil(props.totaldata / props.pagingdata);
-			if (totalpaging.value === 0) {
-				page_range.value = [1];
-				return false;
-			}
-
-			if (page_range.value.length === 0) {
-				page_range.value = return_next_range();
-			}
 		});
 
 		const return_next_range = () => {
@@ -117,6 +106,18 @@ export default {
 			const new_range = Array.from(new Array(props.pagingrange), (_, i) => page_number.value - i);
 			return new_range.sort((a, b) => a - b);
 		};
+
+		watch(
+			() => props.totaldata,
+			cur => {
+				totalpaging.value = Math.ceil(cur / 5);
+				if (totalpaging.value === 0) {
+					page_range.value = [1];
+					return false;
+				}
+				page_range.value = return_next_range();
+			},
+		);
 
 		return {
 			page_number,

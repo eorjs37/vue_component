@@ -2,6 +2,7 @@
 - ## props  
    |Name|type|required|default|description|
    |-----|-----|-----|-----|-----|
+
    |isCheckBox|Boolean|false|true|체크박스 사용여부|
    |tabledata|Object|false|{head:[],body:[]}|Table Head,Body 데이터|
 
