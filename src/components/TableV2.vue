@@ -3,7 +3,7 @@
 		<!-- ##################### thead ##################### -->
 		<thead>
 			<tr>
-				<th v-if="props.isCheckBox">
+				<th v-if="props.isCheckBox" class="txt_center">
 					<input type="checkbox" class="checkbox" v-model="allChecked" :class="{ active: allChecked }" />
 					<label for="cb1" @click="allCheck()"></label>
 				</th>
@@ -19,9 +19,9 @@
 		</thead>
 		<!--##################### tbody #####################-->
 		<tbody>
-			<template v-for="(rowItem, index) in tabledata.body" :key="'rowItem' + index">
+			<template v-for="(rowItem, index) in bodyData" :key="'rowItem' + index">
 				<tr>
-					<td v-if="props.isCheckBox">
+					<td v-if="props.isCheckBox" class="txt_center">
 						<input type="checkbox" class="checkbox" v-model="rowItem.isCheck" :class="{ active: rowItem.isCheck }" />
 						<label for="cb1" @click="selectedCheckBox(rowItem)"></label>
 					</td>
@@ -69,8 +69,23 @@ export default {
 		 */
 		const allCheck = () => {
 			allChecked.value = !allChecked.value;
-			for (let item in props.tabledata.body) {
-				props.tabledata.body[item].isCheck = allChecked.value;
+			for (let item in bodyData.value) {
+				bodyData.value[item]['isCheck'] = allChecked.value;
+			}
+
+			//isCheck true이면 존재하는지 확인 후 존재하지 않을때만 push
+			//isCheck false이면 존재하는지 확인 후 존재하면 splice
+			for (let item in bodyData.value) {
+				const findIdx = selectItem.findIndex(findItem => findItem.id === bodyData.value[item]['id']);
+				if (bodyData.value[item]['isCheck']) {
+					if (findIdx < 0) {
+						selectItem.push(bodyData.value[item]);
+					}
+				} else {
+					if (findIdx > -1) {
+						selectItem.splice(findIdx, 1);
+					}
+				}
 			}
 		};
 
@@ -94,7 +109,15 @@ export default {
 		/* reactive */
 		watch(
 			() => _.cloneDeep(props.tabledata.body),
-			(cur, old) => {},
+			cur => {
+				const copyCur = [...cur];
+				for (let i = 0; i < copyCur.length; i++) {
+					copyCur[i]['isCheck'] = false;
+				}
+				bodyData.value = copyCur;
+				selectItem.length = 0;
+				allChecked.value = false;
+			},
 		);
 
 		onMounted(() => {
