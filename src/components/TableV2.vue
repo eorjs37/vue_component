@@ -39,7 +39,8 @@
 	</table>
 </template>
 <script>
-import { reactive, ref } from 'vue';
+import { onMounted, reactive, ref, toRefs, watch } from 'vue';
+import _ from 'lodash';
 export default {
 	props: {
 		isCheckBox: {
@@ -62,6 +63,7 @@ export default {
 	setup(props, context) {
 		const allChecked = ref(false);
 		const selectItem = reactive([]);
+		const bodyData = ref(props.tabledata.body);
 		/*
 		 * @description: 전체 체크
 		 */
@@ -89,8 +91,19 @@ export default {
 			context.emit('rowselected', item);
 		};
 
+		/* reactive */
+		watch(
+			() => _.cloneDeep(props.tabledata.body),
+			(cur, old) => {},
+		);
+
+		onMounted(() => {
+			console.log('TableComponent onMounted');
+		});
+
 		return {
 			props,
+			bodyData,
 			allChecked,
 			selectItem,
 			allCheck,
